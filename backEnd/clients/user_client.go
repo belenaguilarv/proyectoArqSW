@@ -1,7 +1,7 @@
 package product
 
 import (
-	"go/model"
+	"github.com/belenaguilarv/proyectoArqSW/backEnd/model"
 
 	"github.com/jinzhu/gorm"
 	log "github.com/sirupsen/logrus"

@@ -1,8 +1,8 @@
 package model
 
 type User struct {
-	UserId   int    `gorm:"primaryKey; not null; unsigned; auto_increment"`
-	UserName string `gorm:"type:varchar(50); not null; unique"`
+	Id       int    `gorm:"primaryKey; not null; auto_increment"`
+	Name     string `gorm:"type:varchar(50); not null"`
 	Password string `gorm:"type:varchar(255); not null"`
 }
 

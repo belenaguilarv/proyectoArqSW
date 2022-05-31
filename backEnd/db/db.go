@@ -1,9 +1,9 @@
 package db
 
 import (
-	userClient "go/clients"
-	"go/model"
-	"os"
+	userClient "github.com/belenaguilarv/proyectoArqSW/backEnd/clients"
+
+	"github.com/belenaguilarv/proyectoArqSW/backEnd/model"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -17,11 +17,11 @@ var (
 
 func init() {
 	// DB Connections Paramters
-	DBName := "sql10482597"
-	DBUser := "sql10482597"
-	//DBPass := ""
-	DBPass := os.Getenv("MVC_DB_PASS")
-	DBHost := "sql10.freemysqlhosting.net"
+	DBName := "accounts"
+	DBUser := "root"
+	DBPass := "root"
+	//DBPass := os.Getenv("MVC_DB_PASS")
+	DBHost := "127.0.0.1"
 	// ------------------------
 
 	db, err = gorm.Open("mysql", DBUser+":"+DBPass+"@tcp("+DBHost+":3306)/"+DBName+"?charset=utf8&parseTime=True")

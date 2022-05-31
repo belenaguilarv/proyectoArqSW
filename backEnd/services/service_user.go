@@ -1,10 +1,10 @@
 package services
 
 import (
-	userCliente "go/clients" // conecta a la base de datos
-	"go/dto"
-	e "go/errors" // que hace esto? (utils)
-	"go/model"
+	userCliente "github.com/belenaguilarv/proyectoArqSW/backEnd/clients" // conecta a la base de datos
+	"github.com/belenaguilarv/proyectoArqSW/backEnd/dto"
+	e "github.com/belenaguilarv/proyectoArqSW/backEnd/errors" // que hace esto? (utils)
+	"github.com/belenaguilarv/proyectoArqSW/backEnd/model"
 )
 
 type userService struct{}
@@ -30,8 +30,8 @@ func (s *userService) GetUserById(id int) (dto.UserDto, e.ApiError) {
 	if user.Id == 0 {
 		return userDto, e.NewBadRequestApiError("user not found")
 	}
-	userDto.UserName = user.UserName
-	userDto.UserId = user.Id
+	userDto.Name = user.Name
+	userDto.Id = user.Id
 	userDto.Password = user.Password
 	return userDto, nil
 }
@@ -43,7 +43,7 @@ func (s *userService) GetUsers() (dto.UsersDto, e.ApiError) {
 
 	for _, user := range users {
 		var userDto dto.UserDto
-		userDto.UserName = user.Name
+		userDto.Name = user.Name
 		userDto.Id = user.Id
 		userDto.Password = user.Password
 
