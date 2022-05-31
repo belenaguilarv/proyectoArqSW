@@ -3,8 +3,8 @@ package services
 import (
 	userCliente "go/clients" // conecta a la base de datos
 	"go/dto"
+	e "go/errors" // que hace esto? (utils)
 	"go/model"
-	e "go/utils/errors" // que hace esto? (utils)
 )
 
 type userService struct{}
