@@ -1,7 +1,7 @@
 package services
 
 import (
-	userCliente "go/clients/user" // que hace esto???
+	userCliente "go/clients" // conecta a la base de datos
 	"go/dto"
 	"go/model"
 	e "go/utils/errors" // que hace esto? (utils)
