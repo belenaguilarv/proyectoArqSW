@@ -1,7 +1,7 @@
 package product
 
 import (
-	"mvc-go/model"
+	"go/model"
 
 	"github.com/jinzhu/gorm"
 	log "github.com/sirupsen/logrus"
