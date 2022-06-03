@@ -1,12 +1,10 @@
 package model
 
 type Order struct {
-	OrderId int `gorm:"primaryKey;smallint; unsigned; not null; auto_increment"`
-	//OrderDate  date `gorm:"type: date"`
-	TotalPrice int `gorm:"type:smallint; unsigned; not null"`
-	Quantity   int `gorm:"type:smallint; unsigned; not null"`
-
-	ProductId int `gorm:"primaryKey; smallint; not null; unsigned; auto_increment"`
+	OrderId    int     `gorm:"primaryKey;smallint; unsigned; not null; auto_increment"`
+	Date       string  `gorm:"type:varchar(50); not null"`
+	TotalPrice float32 `gorm:"type:float; not null"`
+	Quantity   int     `gorm:"type:smallint; unsigned; not null"`
 }
 
 type Orders []Order
