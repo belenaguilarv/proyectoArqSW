@@ -1,12 +1,11 @@
 package dto
 
 type OrderDto struct {
-	OrderId int `json:"order_id"`
-	//	OrderDate  date `json:"order_date"` // date no lo reconoce
-	TotalPrice int `json:"total_price"`
-	Quantity   int `json:"quantity"`
-
-	// 	ProductId        int     `json:"product_id"`
+	OrderId    int        `json:"order_id"`
+	Date       string     `json:"date"`
+	TotalPrice int        `json:"total_price"`
+	UserId     int        `json:"user_id"`
+	Detail     DetailsDto `json:"details"` //no se si es necesario
 }
 
 type OrdersDto []OrderDto
