@@ -1,9 +1,9 @@
 package dto
 
 type UserDto struct {
-	Id       int    `json:"user_id"`
+	Id       int    `json:"id"`
 	Name     string `json:"user_name"`
-	Password string `json:"user_password"`
+	Password string `json:"password"`
 }
 
 type UsersDto []UserDto

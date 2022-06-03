@@ -17,9 +17,9 @@ var (
 
 func init() {
 	// DB Connections Paramters
-	DBName := "accounts"
+	DBName := "nodelogin"
 	DBUser := "root"
-	DBPass := "root"
+	DBPass := ""
 	//DBPass := os.Getenv("MVC_DB_PASS")
 	DBHost := "127.0.0.1"
 	// ------------------------
