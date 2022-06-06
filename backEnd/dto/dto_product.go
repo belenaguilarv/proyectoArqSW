@@ -6,6 +6,7 @@ type ProductDto struct {
 	Description string  `json:"description"`
 	Picture     string  `json:"picture_url"`
 	Price       float32 `json:"product_unit_price"`
+	// Categories categoriesDto `json:"categories"` // podria hacer falta para mejorar la busqueda
 }
 
 type ProductsDto []ProductDto

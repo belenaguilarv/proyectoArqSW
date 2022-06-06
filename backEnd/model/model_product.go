@@ -8,4 +8,4 @@ type Product struct {
 	Price float32 `gorm:"type:float; not null"`
 }
 
-type ProductsDto []Product
+type Products []Product

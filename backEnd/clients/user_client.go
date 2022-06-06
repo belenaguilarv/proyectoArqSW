@@ -1,4 +1,4 @@
-package product
+package user
 
 import (
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/model"

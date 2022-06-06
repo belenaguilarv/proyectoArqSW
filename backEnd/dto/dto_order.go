@@ -5,7 +5,7 @@ type OrderDto struct {
 	Date       string `json:"date"`
 	TotalPrice int    `json:"total_price"`
 	UserId     int    `json:"user_id"`
-	//Detail     DetailsDto `json:"details"` // no creo que sea necesario
+	//Details     DetailsDto `json:"details"` // no creo que sea necesario
 }
 
 type OrdersDto []OrderDto
