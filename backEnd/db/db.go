@@ -2,12 +2,10 @@ package db
 
 import (
 	userClient "github.com/belenaguilarv/proyectoArqSW/backEnd/clients"
-
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/model"
-
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
 	log "github.com/sirupsen/logrus"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
 var (
@@ -16,15 +14,9 @@ var (
 )
 
 func init() {
-	// DB Connections Paramters
-	DBName := "nodelogin"
-	DBUser := "root"
-	DBPass := ""
-	//DBPass := os.Getenv("MVC_DB_PASS")
-	DBHost := "127.0.0.1"
-	// ------------------------
 
-	db, err = gorm.Open("mysql", DBUser+":"+DBPass+"@tcp("+DBHost+":3306)/"+DBName+"?charset=utf8&parseTime=True")
+	dsn := "root:@tcp(127.0.0.1:3306)/nodelogin?charset=utf8mb4&parseTime=True&loc=Local"
+	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if err != nil {
 		log.Info("Connection Failed to Open")
@@ -33,13 +25,9 @@ func init() {
 		log.Info("Connection Established")
 	}
 
-	// We need to add all CLients that we build
 	userClient.Db = db
 }
-
 func StartDbEngine() {
-	// We need to migrate all classes model.
-	db.AutoMigrate(&model.User{})
-
+	db.AutoMigrate(&model.User{}) // crea una tabla en plural de "user" o la usa si esta creada
 	log.Info("Finishing Migration Database Tables")
 }

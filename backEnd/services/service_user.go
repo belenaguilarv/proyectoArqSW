@@ -46,7 +46,6 @@ func (s *userService) GetUsers() (dto.UsersDto, e.ApiError) {
 		userDto.Name = user.Name
 		userDto.Id = user.Id
 		userDto.Password = user.Password
-
 		usersDto = append(usersDto, userDto)
 	}
 

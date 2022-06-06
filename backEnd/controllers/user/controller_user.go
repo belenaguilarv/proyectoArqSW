@@ -22,6 +22,7 @@ func GetUserById(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(err.Status(), err)
+		log.Error(err.Error())
 		return
 	}
 	c.JSON(http.StatusOK, userDto)

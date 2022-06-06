@@ -1,0 +1,100 @@
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  height: 100vh;
+  font-family:'Prompt', sans-serif;
+}
+
+input[type="text"],
+input[type="password"] {
+  height: 25px;
+  border: 3px solid rgba(47, 18, 18, 0.2);
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+input[type="submit"] {
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  background: transparent ;
+  border: 3px solid #ffebc495;
+  color:#ffebc4;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+input[type="submit"]:hover{
+  background-color: transparent;
+  font-weight:bold;
+  border: 4px solid #ffebc4;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.login-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+  padding: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+  
+  background-image: url(../images/fondoLogin.jpg);
+  background-position: center;
+  background-size: cover;
+
+}
+form{
+  padding: 20px;
+  height: 150%;
+  width: 120%;
+  border-radius: 10px;
+  background-color: rgba(26, 23, 23, 0.221);
+}
+
+.list-container {
+  display: flex;
+}
+.error {
+  color: hsl(19, 100%, 50%);
+  font-size: 12px;
+}
+
+.title {
+  font-size: 75px;
+  display: inline-block;
+  position:fixed;
+  top:100px;
+  text-align: center;
+  z-index:10;
+  font-weight: bold;
+  color: rgb(255, 235, 196);
+}
+
+
+.input-container {
+  display: flex; 
+  flex-direction: column;
+  gap: 13px;
+  margin: 10px;
+  top:0px;
+  left:0px;
+  z-index:5;
+  color: bisque;
+  position: relative;
+}
+.input-container:hover{
+  background-color: transparent;
+  border-color: white;
+}
