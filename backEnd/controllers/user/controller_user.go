@@ -39,3 +39,26 @@ func GetUsers(c *gin.Context) {
 
 	c.JSON(http.StatusOK, usersDto)
 }
+
+/*
+func Login(c *gin.Context) {
+	var loginDto dto.LoginDto
+	err := c.BindJSON(&loginDto) //agarra el body de request y lo trata de meter dentro de la estructura dto
+
+	// Error Parsing json param
+	if err != nil {
+		log.Error(err.Error())
+		c.JSON(http.StatusBadRequest, err.Error())
+		return
+	}
+
+	tokenDto, er := service.UserService.LoginUser(loginDto)
+
+	if er != nil {
+		panic("")
+	}
+
+	c.JSON(http.StatusAccepted, tokenDto)
+
+}
+*/
