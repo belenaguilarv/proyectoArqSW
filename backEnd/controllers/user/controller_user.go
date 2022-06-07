@@ -10,7 +10,11 @@ import (
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
+
+	"github.com/golang-jwt/jwt"
 )
+
+var jwtKey = []byte("secret_key")
 
 func GetUserById(c *gin.Context) {
 	log.Debug("User id to load: " + c.Param("id"))
@@ -40,12 +44,9 @@ func GetUsers(c *gin.Context) {
 	c.JSON(http.StatusOK, usersDto)
 }
 
-/*
-func Login(c *gin.Context) {
+func LoginUser(c *gin.Context) {
 	var loginDto dto.LoginDto
-	err := c.BindJSON(&loginDto) //agarra el body de request y lo trata de meter dentro de la estructura dto
-
-	// Error Parsing json param
+	err := c.BindJSON(&loginDto)
 	if err != nil {
 		log.Error(err.Error())
 		c.JSON(http.StatusBadRequest, err.Error())
@@ -55,10 +56,26 @@ func Login(c *gin.Context) {
 	tokenDto, er := service.UserService.LoginUser(loginDto)
 
 	if er != nil {
-		panic("")
+		c.JSON(er.Status(), er)
+		return
 	}
 
-	c.JSON(http.StatusAccepted, tokenDto)
+	tkn, err := jwt.Parse(tokenDto.Token, func(t *jwt.Token) (interface{}, error) { return jwtKey, nil })
+
+	if err != nil {
+		if err == jwt.ErrSignatureInvalid {
+			c.JSON(http.StatusUnauthorized, "Invalid Signature")
+			return
+		}
+		c.JSON(http.StatusBadRequest, "Bad Request")
+		return
+	}
+
+	if !tkn.Valid {
+		c.JSON(http.StatusUnauthorized, "Invalid Token")
+		return
+	}
+	c.JSON(http.StatusCreated, tokenDto)
+	//falta seguir con cosas del servis que aun no estan implementadas
 
 }
-*/

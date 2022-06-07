@@ -10,8 +10,3 @@ type UserDto struct {
 }
 
 type UsersDto []UserDto
-
-type LoginDto struct {
-	UserName string `json:"user_name"`
-	Password string `json:"password"`
-}

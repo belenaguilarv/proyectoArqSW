@@ -1,10 +1,11 @@
 package services
 
 import (
-	userCliente "github.com/belenaguilarv/proyectoArqSW/backEnd/clients" // conecta a la base de datos
+	userCliente "github.com/belenaguilarv/proyectoArqSW/backEnd/clients/user" // conecta a la base de datos
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/dto"
 	e "github.com/belenaguilarv/proyectoArqSW/backEnd/errors" // que hace esto? (utils)
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/model"
+	"github.com/golang-jwt/jwt"
 )
 
 type userService struct{}
@@ -12,7 +13,10 @@ type userService struct{}
 type userServiceInterface interface {
 	GetUserById(id int) (dto.UserDto, e.ApiError)
 	GetUsers() (dto.UsersDto, e.ApiError)
+	LoginUser(loginDto dto.LoginDto) (dto.Token, e.ApiError)
 }
+
+var jwtKey = []byte("secret_key")
 
 var (
 	UserService userServiceInterface
@@ -50,4 +54,22 @@ func (s *userService) GetUsers() (dto.UsersDto, e.ApiError) {
 	}
 
 	return usersDto, nil
+}
+
+func (s *userService) LoginUser(loginDto dto.LoginDto) (dto.Token, e.ApiError) {
+	var user model.User = userCliente.GetUserByName(loginDto.Name)
+
+	var tokenDto dto.Token
+
+	if user.Id == 0 {
+		return tokenDto, e.NewBadRequestApiError("User not found")
+	}
+
+	if user.Password == loginDto.Password {
+		token := jwt.New(jwt.SigningMethodHS256)
+		tokenString, _ := token.SignedString(jwtKey)
+		tokenDto.Token = tokenString
+		tokenDto.Id = user.Id
+	}
+	return tokenDto, nil
 }
