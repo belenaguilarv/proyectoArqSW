@@ -1,6 +1,6 @@
 package dto
 
-type DetailDto struct {
+type OrderDetailDto struct {
 	DetailId   int `json:"detail_id"`
 	Quantity   int `json:"quantity"`
 	Price      int `json:"price"`
@@ -9,4 +9,4 @@ type DetailDto struct {
 	OrderId    int `json:"order_id"`
 }
 
-type DetailsDto []DetailDto
+type OrderDetailsDto []OrderDetailDto

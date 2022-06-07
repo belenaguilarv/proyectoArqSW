@@ -1,6 +1,6 @@
 package model
 
-type Detail struct {
+type OrderDetail struct {
 	DetailId  int     `gorm:"primaryKey; smallint; not null; unsigned; auto_increment"`
 	Quantity  int     `gorm:"type:smallint; unsigned; not null"`
 	Price     float32 `gorm:"type:float; not null"`
@@ -8,4 +8,4 @@ type Detail struct {
 	OrderId   int     `gorm:"type:smallint; unsigned; not null"`
 }
 
-type Details []Detail
+type OrderDetails []OrderDetail

@@ -10,9 +10,9 @@ type OrderDto struct {
 type OrdersDto []OrderDto
 
 type OrderWithDetailsDto struct {
-	Id         int    `json:"order_id"`
-	Date       string `json:"date"`
-	TotalPrice int    `json:"total_price"`
-	UserId     int    `json:"user_id"`
-	//Details    DetailsDto `json:"details"`
+	Id         int             `json:"order_id"`
+	Date       string          `json:"date"`
+	TotalPrice int             `json:"total_price"`
+	UserId     int             `json:"user_id"`
+	Details    OrderDetailsDto `json:"details"`
 }
