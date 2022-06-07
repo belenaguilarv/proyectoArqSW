@@ -14,7 +14,20 @@ async function getUserByID(id) {
   })
     .then(data => data.json())
  } 
+ 
+ 
+ async function getUserByLogin(username, password) {
+  return fetch('http://127.0.0.1:8090/login/', {
+    crossDomain:true,
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'},
+    body: JSON.stringify({'username': username, 'password': password})
+      .then(data => data.json())
+  })}
 
+
+  
 function Prueba1() {
 
   const [userData, setUserData] = useState({});
@@ -29,8 +42,8 @@ function Prueba1() {
 
     // Find user login info
     try{
-      const user = await getUserByID(uid.value);
-      //const user = await getUserBylogin(uid.value,upass.value);
+     // const user = await getUserByID(uid.value);
+      const login = await getUserByLogin(uid.value,upass.value);
     } catch(e){
       console.log(e);
     }
@@ -45,7 +58,7 @@ function Prueba1() {
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="input-container">
-          <label>Username </label>
+          <label>UserID </label>
           <input type="text" name="uid" required />
           <label> Password </label>
           <input type="password" name="upass" required />
