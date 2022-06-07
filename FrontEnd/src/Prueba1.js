@@ -4,25 +4,6 @@ import logo from './logo.svg';
 import './Prueba1.css';
 //import './Menu.js';
 
-/*async function getUserByID(id) {
- return fetch('http://127.0.0.1:8090/user/' + id, {
-   method: 'GET',
-   headers: {
-     'Content-Type': 'application/json'
-   }
- })
-
- .then((Response) => {
-  if (Response.status == 200){
-    console.log(Response)
-    return Response.json()
-  }
-  else{
-   throw `error with status ${Response.status}`;
-  }
-})
-}*/
-
 async function getUserByID(id) {
   return fetch('http://127.0.0.1:8090/user/' + id, {
     crossDomain:true,
@@ -32,11 +13,7 @@ async function getUserByID(id) {
     }
   })
     .then(data => data.json())
-
- }
-
-
-
+ } 
 
 function Prueba1() {
 
@@ -53,11 +30,12 @@ function Prueba1() {
     // Find user login info
     try{
       const user = await getUserByID(uid.value);
+      //const user = await getUserBylogin(uid.value,upass.value);
     } catch(e){
       console.log(e);
     }
-    
-    setUserData(user);
+  
+    setUserData();   // user adentro no va
     setIsUser(true);
     
   };
