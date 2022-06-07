@@ -11,7 +11,7 @@ type productService struct{}
 
 type productServiceInterface interface {
 	GetProductById(id int) (dto.ProductDto, e.ApiError)
-	GetProductByCategory(categoryId int) (dto.ProductsDto, e.ApiError)
+	GetProductsByCategory(categoryId int) (dto.ProductsDto, e.ApiError)
 	GetProducts() (dto.ProductsDto, e.ApiError)
 }
 
@@ -34,8 +34,8 @@ func (s *productService) GetProductById(id int) (dto.ProductDto, e.ApiError) {
 	productDto.CategoryId = product.CategoryId
 	return productDto, nil
 }
-func (s *productService) GetProductByCategory(categoryId int) (dto.ProductsDto, e.ApiError) {
-	var products model.Products = ProductCliente.GetProductByCategory(categoryId)
+func (s *productService) GetProductsByCategory(categoryId int) (dto.ProductsDto, e.ApiError) {
+	var products model.Products = ProductCliente.GetProductsByCategory(categoryId)
 	var productsDto dto.ProductsDto
 	for _, product := range products {
 		var productDto dto.ProductDto
