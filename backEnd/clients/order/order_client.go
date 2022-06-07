@@ -38,3 +38,13 @@ func GetOrderWithDetailsbyId(id int) model.OrderWithDetails {
 	return order
 }
 */
+func PostOrder() {
+	// necesito crear los detalles asociados a la orden
+	//Db.Create(&model.OrderWithDetails{}.Details)
+	Db.Create(&model.Order{})
+}
+func DeleteOrder(id int) {
+	// necesito borrar los detalles asociados a la orden
+	Db.Where("order_id = ?", id).Find(&model.OrderDetails{}).Delete(&model.OrderDetails{})
+	Db.Where("id = ?", id).Delete(&model.Order{})
+}
