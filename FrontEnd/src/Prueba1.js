@@ -17,14 +17,17 @@ async function getUserByID(id) {
  
  
  async function getUserByLogin(username, password) {
-  return fetch('http://127.0.0.1:8090/login/', {
+  return fetch('http://127.0.0.1:8090/login', {
     crossDomain:true,
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'},
     body: JSON.stringify({'username': username, 'password': password})
-      .then(data => data.json())
-  })}
+      
+  })
+  .then(data => data.json())
+}
+
 
 
   

@@ -1,9 +1,9 @@
 package services
 
 import (
-	userCliente "github.com/belenaguilarv/proyectoArqSW/backEnd/clients/user" // conecta a la base de datos
+	userCliente "github.com/belenaguilarv/proyectoArqSW/backEnd/clients/user"
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/dto"
-	e "github.com/belenaguilarv/proyectoArqSW/backEnd/errors" // que hace esto? (utils)
+	e "github.com/belenaguilarv/proyectoArqSW/backEnd/errors"
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/model"
 	"github.com/golang-jwt/jwt"
 )
