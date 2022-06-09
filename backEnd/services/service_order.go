@@ -14,6 +14,8 @@ type orderServiceInterface interface {
 	GetOrdersByUserId(userId int) (dto.OrdersDto, e.ApiError)
 	//	GetOrders() (dto.OrdersDto, e.ApiError)
 	//	GetOrderWithDetailsbyId(id int) (dto.OrderDto, dto.DetailsDto, e.ApiError)
+	PostOrder()
+	DeleteOrder(id int)
 }
 
 var (
@@ -47,4 +49,12 @@ func (s *orderService) GetOrdersByUserId(userId int) (dto.OrdersDto, e.ApiError)
 		ordersDto = append(ordersDto, orderDto)
 	}
 	return ordersDto, nil
+}
+
+func (s *orderService) PostOrder() {
+	orderCliente.PostOrder()
+
+}
+func (s *orderService) DeleteOrder(id int) {
+	orderCliente.DeleteOrder(id)
 }
