@@ -1,6 +1,8 @@
 package db
 
 import (
+	orderClient "github.com/belenaguilarv/proyectoArqSW/backEnd/clients/order"
+	productClient "github.com/belenaguilarv/proyectoArqSW/backEnd/clients/product"
 	userClient "github.com/belenaguilarv/proyectoArqSW/backEnd/clients/user"
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/model"
 	log "github.com/sirupsen/logrus"
@@ -26,8 +28,14 @@ func init() {
 	}
 
 	userClient.Db = db
+	orderClient.Db = db
+	productClient.Db = db
 }
 func StartDbEngine() {
+
 	db.AutoMigrate(&model.User{}) // crea una tabla en plural de "user" o la usa si esta creada
+	db.AutoMigrate(&model.Order{})
+	db.AutoMigrate(&model.Product{})
+
 	log.Info("Finishing Migration Database Tables")
 }
