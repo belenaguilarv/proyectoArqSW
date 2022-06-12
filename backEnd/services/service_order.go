@@ -12,7 +12,7 @@ type orderService struct{}
 type orderServiceInterface interface {
 	GetOrderById(id int) (dto.OrderDto, e.ApiError)
 	GetOrdersByUserId(userId int) (dto.OrdersDto, e.ApiError)
-	//	GetOrders() (dto.OrdersDto, e.ApiError)
+	//GetOrders() (dto.OrdersDto, e.ApiError)
 	//	GetOrderWithDetailsbyId(id int) (dto.OrderDto, dto.DetailsDto, e.ApiError)
 	PostOrder()
 	DeleteOrder(id int)

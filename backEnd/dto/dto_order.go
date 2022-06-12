@@ -10,17 +10,9 @@ type OrderDto struct {
 type OrdersDto []OrderDto
 
 type OrderWithDetailsDto struct {
-<<<<<<< HEAD
-	Id         int        `json:"order_id"`
-	Date       string     `json:"date"`
-	TotalPrice int        `json:"total_price"`
-	UserId     int        `json:"user_id"`
-	Details    DetailsDto `json:"details"`
-=======
-	Id         int             `json:"order_id"`
-	Date       string          `json:"date"`
-	TotalPrice int             `json:"total_price"`
-	UserId     int             `json:"user_id"`
-	Details    OrderDetailsDto `json:"details"`
->>>>>>> efe4d3285ab3d39a47d34110dcd7bc9c3dc68b13
+	Id         int    `json:"order_id"`
+	Date       string `json:"date"`
+	TotalPrice int    `json:"total_price"`
+	UserId     int    `json:"user_id"`
+	//	Details    DetailsDto `json:"details"`                 indefinido
 }

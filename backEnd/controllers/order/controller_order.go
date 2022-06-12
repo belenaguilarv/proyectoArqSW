@@ -16,4 +16,20 @@ import (
 jwtKey = []byte("secret_key")
 dto.constants.JWT_SECRET_KEY = jwtKey
 
+func GetOrderById(c *gin.Context) {
+	log.Debug("Order id to load: " + c.Param("id"))
+
+	id, _ := strconv.Atoi(c.Param("id"))
+	var orderDto dto.OrderDto
+
+	orderDto, err := service.UserService.GetOrderById(id)
+
+	if err != nil {
+		c.JSON(err.Status(), err)
+		log.Error(err.Error())
+		return
+	}
+	c.JSON(http.StatusOK, orderDto)
+}
+
 

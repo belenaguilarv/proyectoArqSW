@@ -24,7 +24,7 @@ func GetUsers() model.Users {
 
 func GetUserByName(Name string) model.User {
 	var user model.User
-	Db.Where("Name = ?", Name).First(&user)
+	Db.Where("username = ?", Name).First(&user)
 	log.Debug("User: ", user)
 	return user
 }

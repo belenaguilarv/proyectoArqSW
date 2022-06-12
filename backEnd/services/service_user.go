@@ -42,7 +42,7 @@ func (s *userService) GetUserById(id int) (dto.UserDto, e.ApiError) {
 
 func (s *userService) GetUsers() (dto.UsersDto, e.ApiError) {
 
-	var users model.Users = userCliente.GetUsers() // userClient??
+	var users model.Users = userCliente.GetUsers()
 	var usersDto dto.UsersDto
 
 	for _, user := range users {

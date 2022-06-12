@@ -22,7 +22,6 @@ func GetOrdersByUserId(userId int) model.Orders {
 	return orders
 }
 
-/*
 func GetOrders() model.Orders {
 	var orders model.Orders
 	Db.Find(&orders)
@@ -30,19 +29,27 @@ func GetOrders() model.Orders {
 	return orders
 }
 
-
+/*
 func GetOrderWithDetailsbyId(id int) model.OrderWithDetails {
 	var order model.OrderWithDetails
 	Db.Where("id = ?", id).First(&order)
 	log.Debug("Order: ", order)
 	return order
-}
-*/
+}*/
+
 func PostOrder() {
 	// necesito crear los detalles asociados a la orden
 	//Db.Create(&model.OrderWithDetails{}.Details)
 	Db.Create(&model.Order{})
+	/*
+		if ord.Error != nil {
+			//TODO Manage Errors
+			log.Error("")
+		}
+		log.Debug("Order Created: ", Order.Id)
+		return Order*/
 }
+
 func DeleteOrder(id int) {
 	// necesito borrar los detalles asociados a la orden
 	Db.Where("order_id = ?", id).Find(&model.OrderDetails{}).Delete(&model.OrderDetails{})
