@@ -63,7 +63,7 @@ func (s *userService) GetUsers() (dto.UsersDto, e.ApiError) {
 }
 
 func (s *userService) LoginUser(loginDto dto.LoginDto) (dto.Token, e.ApiError) {
-	var user model.User = userCliente.GetUserByName(loginDto.Name)
+	var user model.User = userCliente.GetUserByName(loginDto)
 
 	var tokenDto dto.Token
 

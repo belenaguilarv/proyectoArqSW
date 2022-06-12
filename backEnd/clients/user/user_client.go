@@ -1,7 +1,9 @@
 package user
 
 import (
+	"github.com/belenaguilarv/proyectoArqSW/backEnd/dto"
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/model"
+
 	log "github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
@@ -22,9 +24,9 @@ func GetUsers() model.Users {
 	return users
 }
 
-func GetUserByName(Name string) model.User {
+func GetUserByName(LoginDto dto.LoginDto) model.User {
 	var user model.User
-	Db.Where("Name = ?", Name).First(&user)
+	Db.First(&user, "Name = ? AND password = ?", LoginDto.Name, LoginDto.Password)
 	log.Debug("User: ", user)
 	return user
 }
