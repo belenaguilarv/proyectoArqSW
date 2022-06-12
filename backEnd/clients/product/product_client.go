@@ -22,9 +22,11 @@ func GetProducts() model.Products {
 	return products
 }
 
-func GetProductsByCategory(categoryId int) model.Products {
+/*
+func GetProductsByCategory(category int) model.Products {
 	var products model.Products
-	Db.Where("category_id = ?", categoryId).Find(&products)
+	Db.Where("category = ?", category).Find(&products)
 	log.Debug("Products: ", products)
 	return products
 }
+*/

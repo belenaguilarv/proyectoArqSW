@@ -5,12 +5,12 @@ import (
 	"strconv"
 
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/dto"
+
 	service "github.com/belenaguilarv/proyectoArqSW/backEnd/services"
+
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 )
-
-var jwtKey = []byte("secret_key")
 
 func GetProducts(c *gin.Context) {
 	var productsDto dto.ProductsDto
@@ -38,14 +38,16 @@ func GetProductById(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, productDto)
 }
-func GetProductByCategory(c *gin.Context) {
 
-	log.Debug("Product id to load: " + c.Param("idCategory"))
+/*
+func GetProductsByCategory(c *gin.Context) {
 
-	idCategory, _ := strconv.Atoi(c.Param("idCategory")) //se pasa el id de array a int
-	var productsDto dto.ProductsDto
+	log.Debug("Product id to load: " + c.Param("Category"))
 
-	productsDto, err := service.ProductService.GetProductsByIdCategory(idCategory) //delega el trabajo al service
+	category, _ := strconv.Atoi(c.Param("Category"))
+	var productsDto dto.ProductDto
+
+	productsDto, err := service.ProductService.GetProductsByCategory(category)
 
 	if err != nil {
 		c.JSON(err.Status(), err)
@@ -53,4 +55,4 @@ func GetProductByCategory(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, productsDto)
 
-}
+}*/
