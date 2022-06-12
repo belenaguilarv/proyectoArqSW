@@ -12,8 +12,7 @@ type orderService struct{}
 type orderServiceInterface interface {
 	GetOrderById(id int) (dto.OrderDto, e.ApiError)
 	GetOrdersByUserId(userId int) (dto.OrdersDto, e.ApiError)
-	//GetOrders() (dto.OrdersDto, e.ApiError)
-	//	GetOrderWithDetailsbyId(id int) (dto.OrderDto, dto.DetailsDto, e.ApiError)
+	GetOrderWithDetailsbyId(id int) (dto.OrderWithDetailsDto, e.ApiError)
 	PostOrder()
 	DeleteOrder(id int)
 }
@@ -25,6 +24,7 @@ var (
 func init() {
 	OrderService = &orderService{}
 }
+
 func (s *orderService) GetOrderById(id int) (dto.OrderDto, e.ApiError) {
 	var order model.Order = orderCliente.GetOrderById(id)
 	var orderDto dto.OrderDto
@@ -52,9 +52,9 @@ func (s *orderService) GetOrdersByUserId(userId int) (dto.OrdersDto, e.ApiError)
 }
 
 func (s *orderService) PostOrder() {
-	orderCliente.PostOrder()
+	orderCliente.PostOrder() //delega el trabajo al cliente
 
 }
 func (s *orderService) DeleteOrder(id int) {
-	orderCliente.DeleteOrder(id)
+	orderCliente.DeleteOrder(id) //delega el trabajo al cliente
 }

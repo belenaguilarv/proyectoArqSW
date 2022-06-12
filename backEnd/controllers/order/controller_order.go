@@ -30,5 +30,22 @@ func GetOrderById(c *gin.Context) {
 	c.JSON(http.StatusOK, orderDto)
 }
 
+func GetOrdersByUserId(c *gin.Context) {
+	log.Debug("User id to load: " + c.Param("id"))
+
+	id, _ := strconv.Atoi(c.Param("id")) //se pasa el id de array a int
+	var ordersDto dto.OrdersDto
+
+	ordersDto, err := service.OrderService.GetOrdersByUserId(id) //delega el trabajo al service
+
+	if err != nil {
+		c.JSON(err.Status(), err)
+		return
+	}
+	c.JSON(http.StatusOK, ordersDto)
+}
+
+func 
+
 
 
