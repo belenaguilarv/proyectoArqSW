@@ -33,7 +33,7 @@ func GetOrdersWithDetailsByUserId(userId int) model.OrdersWithDetails {
 	var ordersWithDetails model.OrdersWithDetails
 	var orders model.Orders
 	var details model.OrderDetail
-	
+
 	orders = GetOrdersByUserId(userId)
 	for _, order := range orders {
 		details = GetOrderDetailsByOrderId(order.Id)
@@ -49,7 +49,7 @@ func GetOrderWithDetailsbyOrderId(id int) model.OrderWithDetails {
 	var order model.Orders
 	var details model.OrderDetail
 
-	order = GetOrdersByUserId(userId)
+	order = GetOrderById(id)
 	for _, order := range order {
 		details = GetOrderDetailsByOrderId(order.Id)
 		OrderWithDetails = append(OrderWithDetails, model.OrderWithDetails{Order: order, OrderDetails: details})
@@ -58,46 +58,26 @@ func GetOrderWithDetailsbyOrderId(id int) model.OrderWithDetails {
 	return OrderWithDetails
 }
 
-func PostOrder() bool{
+func PostOrder() {
 	// necesito crear los detalles asociados a la orden
 	var orderWithDetails model.OrderWithDetails = GetOrderWithDetailsbyOrderId(id)
 	var order model.Order = orderWithDetails.Order
 	var details model.OrderDetails = orderWithDetails.Details
-	var err error
 
 	for _, detail := range details {
 		Db.Create(&detail)
 	}
 	Db.Create(&order)
-
-	try {
-		Db.Where("id = ?", order.Id).First(&order)
-	} catch (err) {
-		err = errors.New("Error al crear la orden")
-		return false
-	}
-	return true
 }
 
-func DeleteOrder(id int) bool {
+func DeleteOrder(id int) {
 	var OrderWithDetails model.OrderWithDetails = GetOrderWithDetailsbyOrderId(id)
-	var order model.Order = OrderWithDetails.Order 
-	var details model.OrderDetails = OrderWithDetails.Details
-	var err error
-	
+	var order model.Order = OrderWithDetails.Order
+	var details model.OrderDetails = OrderWithDetails.details
+
 	for _, detail := range details {
 		Db.Delete(&detail)
 	}
-	Db.Delete(&order) 
+	Db.Delete(&order)
 
-	try {
-		Db.Where("id = ?", id).First(&order)
-	} catch (err) {
-		err = errors.New("Order not found")
-		return false
-	}
-	return true
-	
 }
-
-
