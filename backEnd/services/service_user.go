@@ -37,6 +37,9 @@ func (s *userService) GetUserById(id int) (dto.UserDto, e.ApiError) {
 	userDto.Name = user.Name
 	userDto.Id = user.Id
 	userDto.Password = user.Password
+	userDto.Number = user.Number
+	userDto.Street = user.Street
+	userDto.City = user.City
 	return userDto, nil
 }
 
@@ -50,6 +53,9 @@ func (s *userService) GetUsers() (dto.UsersDto, e.ApiError) {
 		userDto.Name = user.Name
 		userDto.Id = user.Id
 		userDto.Password = user.Password
+		userDto.Number = user.Number
+		userDto.Street = user.Street
+		userDto.City = user.City
 		usersDto = append(usersDto, userDto)
 	}
 

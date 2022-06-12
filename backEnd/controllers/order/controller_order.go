@@ -11,25 +11,24 @@ import (
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 
-	"github.com/golang-jwt/jwt"
+	
 )
-jwtKey = []byte("secret_key")
-dto.constants.JWT_SECRET_KEY = jwtKey
+
 
 func GetOrderById(c *gin.Context) {
 	log.Debug("Order id to load: " + c.Param("id"))
 
-	id, _ := strconv.Atoi(c.Param("id"))
+	id, _ := strconv.Atoi(c.Param("id")) //se pasa el id de array a int
 	var orderDto dto.OrderDto
 
-	orderDto, err := service.UserService.GetOrderById(id)
+	orderDto, err := service.OrderService.GetOrderById(id) //delega el trabajo al service
 
 	if err != nil {
 		c.JSON(err.Status(), err)
-		log.Error(err.Error())
 		return
 	}
 	c.JSON(http.StatusOK, orderDto)
 }
+
 
 
