@@ -9,7 +9,7 @@ type OrderDto struct {
 
 type OrdersDto []OrderDto
 
-type OrderWithDetailsDto struct {
+/*type OrderWithDetailsDto struct {
 	Order   OrderDto        `json:"order"`
 	Details OrderDetailsDto `json:"details"`
-}
+}*/

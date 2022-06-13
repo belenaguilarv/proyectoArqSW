@@ -10,74 +10,37 @@ var Db *gorm.DB
 
 func GetOrderById(id int) model.Order {
 	var order model.Order
+
 	Db.Where("id = ?", id).First(&order)
 	log.Debug("Order: ", order)
+
 	return order
 }
 
-func GetOrdersByUserId(userId int) model.Orders {
+func GetOrders() model.Orders {
 	var orders model.Orders
-	Db.Where("user_id = ?", userId).Find(&orders)
+	Db.Find(&orders)
+
 	log.Debug("Orders: ", orders)
+
 	return orders
 }
+func UpdateMontoFinal(monto float32, id_Order int) float32 {
+	result := Db.Model(&model.Order{}).Where("id = ?", id_Order).Update("monto_final", monto)
 
-func GetOrderDetailsByOrderId(orderId int) model.OrderDetails {
-	var details model.OrderDetails
-	Db.Where("order_id = ?", orderId).Find(&details)
-	log.Debug("Order Details: ", details)
-	return details
+	if result.Error != nil {
+		//TODO Manage Errors
+		log.Error("Order no encontrada")
+	}
+	return monto
 }
 
-func GetOrdersWithDetailsByUserId(userId int) model.OrdersWithDetails {
-	var ordersWithDetails model.OrdersWithDetails
-	var orders model.Orders
-	var details model.OrderDetail
+func InsertOrder(order model.Order) model.Order {
+	result := Db.Create(&order)
 
-	orders = GetOrdersByUserId(userId)
-	for _, order := range orders {
-		details = GetOrderDetailsByOrderId(order.Id)
-		ordersWithDetails = append(ordersWithDetails, model.OrdersWithDetails{Order: order, OrderDetails: details})
+	if result.Error != nil {
+		log.Error("")
 	}
-	log.Debug("Orders With Details: ", ordersWithDetails)
-	return ordersWithDetails
-
-}
-
-func GetOrderWithDetailsbyOrderId(id int) model.OrderWithDetails {
-	var OrderWithDetails model.OrderWithDetails
-	var order model.Orders
-	var details model.OrderDetail
-
-	order = GetOrderById(id)
-	for _, order := range order {
-		details = GetOrderDetailsByOrderId(order.Id)
-		OrderWithDetails = append(OrderWithDetails, model.OrderWithDetails{Order: order, OrderDetails: details})
-	}
-	log.Debug("Order With Details: ", OrderWithDetails)
-	return OrderWithDetails
-}
-
-func PostOrder() {
-	// necesito crear los detalles asociados a la orden
-	var orderWithDetails model.OrderWithDetails = GetOrderWithDetailsbyOrderId(id)
-	var order model.Order = orderWithDetails.Order
-	var details model.OrderDetails = orderWithDetails.Details
-
-	for _, detail := range details {
-		Db.Create(&detail)
-	}
-	Db.Create(&order)
-}
-
-func DeleteOrder(id int) {
-	var OrderWithDetails model.OrderWithDetails = GetOrderWithDetailsbyOrderId(id)
-	var order model.Order = OrderWithDetails.Order
-	var details model.OrderDetails = OrderWithDetails.details
-
-	for _, detail := range details {
-		Db.Delete(&detail)
-	}
-	Db.Delete(&order)
-
+	log.Debug("Order Created: ", order.Id)
+	return order
 }
