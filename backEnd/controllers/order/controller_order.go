@@ -40,8 +40,7 @@ func GetOrders(c *gin.Context) {
 }
 
 /*
-
-func OrderInsert(c *gin.Context) {
+func InsertOrder(c *gin.Context) {
 	var orderDto dto.OrderDto
 	err := c.BindJSON(&orderDto)
 

@@ -6,9 +6,9 @@ import (
 
 	userController "github.com/belenaguilarv/proyectoArqSW/backEnd/controllers/user"
 
-	orderController "github.com/belenaguilarv/proyectoArqSW/backEnd/controllers/order"
+	//orderController "github.com/belenaguilarv/proyectoArqSW/backEnd/controllers/order"
 
-	detailController "github.com/belenaguilarv/proyectoArqSW/backEnd/controllers/orderDetail"
+	//detailController "github.com/belenaguilarv/proyectoArqSW/backEnd/controllers/orderDetail"
 
 	log "github.com/sirupsen/logrus"
 )
@@ -26,13 +26,13 @@ func mapUrls() {
 	router.POST("/login", userController.LoginUser)
 
 	//Order Mapping
-	router.GET("/order/:id", orderController.GetOrderById)
-	router.GET("/order", orderController.GetOrders)
+	//router.GET("/order/:id", orderController.GetOrderById)
+	//router.GET("/order", orderController.GetOrders)
 	//router.POST("/neworder", orderController.InsertOrder)
 
 	// Detail Mapping
-	router.GET("/orderDetail/:id", detailController.GetOrderDetailById)
-	router.GET("/orderDetail", detailController.GetOrderDetails)
+	router.GET("/orderDetail/:id", orderDetailController.GetOrderDetailById)
+	router.GET("/orderDetail", orderDetailController.GetOrderDetails)
 	router.POST("/neworderDetail", orderDetailController.InsertOrderDetail)
 
 	log.Info("Finishing mappings configurations")

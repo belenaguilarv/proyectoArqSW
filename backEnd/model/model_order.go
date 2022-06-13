@@ -8,8 +8,3 @@ type Order struct {
 }
 
 type Orders []Order
-
-type OrderWithDetails struct {
-	Order   Order        `gorm:"foreignkey:OrderId"`
-	Details OrderDetails `gorm:"foreignkey:OrderId"`
-}

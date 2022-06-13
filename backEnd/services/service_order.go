@@ -2,7 +2,6 @@ package services
 
 import (
 	orderCliente "github.com/belenaguilarv/proyectoArqSW/backEnd/clients/order" // conecta a la base de datos
-	//productCliente "github.com/belenaguilarv/proyectoArqSW/backEnd/clients/product"
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/dto"
 	e "github.com/belenaguilarv/proyectoArqSW/backEnd/errors" // que hace esto? (utils)
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/model"
@@ -58,26 +57,26 @@ func (s *orderService) GetOrders() (dto.OrdersDto, e.ApiError) {
 	return ordersDto, nil
 }
 
-/*func (s *orderService) InsertOrder(orderDto dto.OrderDto) (dto.OrderDto, e.ApiError) {
+/*
+func (s *orderService) InsertOrder(orderDto dto.OrderWithDetailsDto) (dto.OrderDto, e.ApiError) {
 
 	var order model.Order
 
 	order.TotalPrice = orderDto.TotalPrice
-	//order.Date = time.Now()
-	order.UserId = orderDto.UserId
+	order.Id = orderDto.Id
 
 	order = orderCliente.InsertOrder(order)
 
 	var details model.OrderDetails
 	var total float32
 
-	for _, detailDto := range orderDto.Order_Details {
+	for _, OrderDetailDto := range orderDto.Details {
 
 		var detail model.OrderDetail
-		detail.Id_Product = detailDto.Id_Producto
+		detail.Id_Product = OrderDetailDto.Id_Producto
 
 		var product model.Product = productCliente.GetProductById(detail.Id_Product)
-		detail.Precio_Unitario = product.Price
+		detail.Price = product.Price
 		detail.Cantidad = detailDto.Cantidad
 		detail.Total = detail.Precio_Unitario * detail.Cantidad
 		detail.Nombre = product.Name
@@ -93,4 +92,5 @@ func (s *orderService) GetOrders() (dto.OrdersDto, e.ApiError) {
 	orderDetailCliente.InsertOrdersDetail(details)
 
 	return orderDto, nil
-}*/
+}
+*/
