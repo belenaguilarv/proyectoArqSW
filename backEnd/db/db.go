@@ -2,9 +2,11 @@ package db
 
 import (
 	orderClient "github.com/belenaguilarv/proyectoArqSW/backEnd/clients/order"
+	orderDetailClient "github.com/belenaguilarv/proyectoArqSW/backEnd/clients/orderDetail"
 	productClient "github.com/belenaguilarv/proyectoArqSW/backEnd/clients/product"
 	userClient "github.com/belenaguilarv/proyectoArqSW/backEnd/clients/user"
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/model"
+
 	log "github.com/sirupsen/logrus"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -30,11 +32,13 @@ func init() {
 	userClient.Db = db
 	orderClient.Db = db
 	productClient.Db = db
+	orderDetailClient.Db = db
 }
 func StartDbEngine() {
 
 	db.AutoMigrate(&model.User{}) // crea una tabla en plural de "user" o la usa si esta creada
 	db.AutoMigrate(&model.Order{})
+	db.AutoMigrate(&model.OrderDetail{})
 	db.AutoMigrate(&model.Product{})
 
 	log.Info("Finishing Migration Database Tables")

@@ -1,0 +1,55 @@
+package orderDetail
+
+import (
+	"github.com/belenaguilarv/proyectoArqSW/backEnd/model"
+	"github.com/jinzhu/gorm"
+	log "github.com/sirupsen/logrus"
+)
+
+var Db *gorm.DB
+
+func GetOrderDetailById(id int) model.OrderDetail {
+	var orderDetail model.OrderDetail
+
+	Db.Where("id = ?", id).First(&orderDetail)
+	log.Debug("OrderDetail: ", orderDetail)
+
+	return orderDetail
+}
+
+func GetOrderDetails() model.OrderDetails {
+	var orderDetails model.OrderDetails
+	Db.Find(&orderDetails)
+
+	log.Debug("OrderDetails: ", orderDetails)
+
+	return orderDetails
+}
+
+func InsertOrderDetail(orderDetail model.OrderDetail) model.OrderDetail {
+	result := Db.Create(&orderDetail)
+
+	if result.Error != nil {
+		log.Error("")
+	}
+	log.Debug("OrderDetail Created: ", orderDetail.DetailId)
+	return orderDetail
+}
+
+/*
+func InsertOrdersDetail(ordersDetail model.OrderDetails) model.OrderDetails {
+
+	for _, orderDetail := range ordersDetail {
+
+		result := Db.Create(&orderDetail)
+
+		log.Debug("Order_Detail Created: ", orderDetail.DetailId)
+
+		if result.Error != nil {
+			log.Error("")
+		}
+	}
+
+	return ordersDetail
+}
+*/
