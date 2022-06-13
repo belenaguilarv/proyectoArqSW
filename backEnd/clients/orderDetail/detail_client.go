@@ -2,8 +2,8 @@ package orderDetail
 
 import (
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/model"
-	"github.com/jinzhu/gorm"
 	log "github.com/sirupsen/logrus"
+	"gorm.io/gorm"
 )
 
 var Db *gorm.DB
@@ -11,7 +11,7 @@ var Db *gorm.DB
 func GetOrderDetailById(id int) model.OrderDetail {
 	var orderDetail model.OrderDetail
 
-	Db.Where("id = ?", id).First(&orderDetail)
+	Db.Where("detail_id = ?", id).First(&orderDetail)
 	log.Debug("OrderDetail: ", orderDetail)
 
 	return orderDetail

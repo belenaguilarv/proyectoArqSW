@@ -7,7 +7,7 @@ import (
 
 	orderController "github.com/belenaguilarv/proyectoArqSW/backEnd/controllers/order"
 
-	detailController "github.com/belenaguilarv/proyectoArqSW/backEnd/controllers/detail"
+	detailController "github.com/belenaguilarv/proyectoArqSW/backEnd/controllers/orderDetail"
 
 	log "github.com/sirupsen/logrus"
 )
