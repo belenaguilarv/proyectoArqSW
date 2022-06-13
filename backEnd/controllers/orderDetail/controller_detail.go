@@ -39,9 +39,7 @@ func GetOrderDetails(c *gin.Context) {
 	c.JSON(http.StatusOK, orderDetailsDto)
 }
 
-/*
-
-func OrderDetailInsert(c *gin.Context) {
+func InsertOrderDetail(c *gin.Context) {
 	var orderDetailDto dto.OrderDetailDto
 	err := c.BindJSON(&orderDetailDto)
 
@@ -61,4 +59,3 @@ func OrderDetailInsert(c *gin.Context) {
 
 	c.JSON(http.StatusCreated, orderDetailDto)
 }
-*/

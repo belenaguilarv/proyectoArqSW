@@ -12,7 +12,7 @@ type orderDetailService struct{}
 type orderDetailServiceInterface interface {
 	GetOrderDetailById(id int) (dto.OrderDetailDto, e.ApiError)
 	GetOrderDetails() (dto.OrderDetailsDto, e.ApiError)
-	//InsertOrderDetail(orderDetailDto dto.OrderDetailDto) (dto.OrderDetailDto, e.ApiError)
+	InsertOrderDetail(orderDetailDto dto.OrderDetailDto) (dto.OrderDetailDto, e.ApiError)
 }
 
 var (
@@ -34,7 +34,7 @@ func (s *orderDetailService) GetOrderDetailById(id int) (dto.OrderDetailDto, e.A
 	orderDetailDto.DetailId = orderDetail.DetailId
 	orderDetailDto.Quantity = orderDetail.Quantity
 	orderDetailDto.Price = orderDetail.Price
-	orderDetailDto.TotalPrice = int(orderDetail.TotalPrice)
+	orderDetailDto.TotalPrice = float32(orderDetail.TotalPrice)
 	orderDetailDto.OrderId = orderDetail.OrderId
 	orderDetailDto.ProductId = orderDetail.ProductId
 	return orderDetailDto, nil
@@ -51,7 +51,7 @@ func (s *orderDetailService) GetOrderDetails() (dto.OrderDetailsDto, e.ApiError)
 		orderDetailDto.DetailId = orderDetail.DetailId
 		orderDetailDto.Quantity = orderDetail.Quantity
 		orderDetailDto.Price = orderDetail.Price
-		orderDetailDto.TotalPrice = int(orderDetail.TotalPrice)
+		orderDetailDto.TotalPrice = float32(orderDetail.TotalPrice)
 		orderDetailDto.OrderId = orderDetail.OrderId
 		orderDetailDto.ProductId = orderDetail.ProductId
 
@@ -61,21 +61,19 @@ func (s *orderDetailService) GetOrderDetails() (dto.OrderDetailsDto, e.ApiError)
 	return orderDetailsDto, nil
 }
 
-/*
 func (s *orderDetailService) InsertOrderDetail(orderDetailDto dto.OrderDetailDto) (dto.OrderDetailDto, e.ApiError) {
 
 	var orderDetail model.OrderDetail
-	orderDetail.Cantidad = orderDetailDto.Cantidad
-	orderDetail.Precio_Unitario = orderDetailDto.Precio_Unitario
-	orderDetail.Total = orderDetailDto.Precio_Unitario * orderDetailDto.Cantidad
-	orderDetail.Id_Order = orderDetailDto.Id_Order
-	orderDetail.Id_Product = orderDetailDto.Id_Producto
+	orderDetail.Quantity = orderDetailDto.Quantity
+	orderDetail.Price = orderDetailDto.Price
+	orderDetail.TotalPrice = orderDetailDto.Price * float32(orderDetailDto.Quantity)
+	orderDetail.OrderId = orderDetailDto.OrderId
+	orderDetail.ProductId = orderDetailDto.ProductId
 
 	orderDetail = orderDetailCliente.InsertOrderDetail(orderDetail)
 
-	orderDetailDto.Id = orderDetail.Id
-	orderDetailDto.Total = orderDetail.Total
+	orderDetailDto.OrderId = orderDetail.OrderId
+	orderDetailDto.TotalPrice = orderDetail.TotalPrice
 
 	return orderDetailDto, nil
 }
-*/

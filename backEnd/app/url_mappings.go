@@ -1,6 +1,7 @@
 package app
 
 import (
+	orderDetailController "github.com/belenaguilarv/proyectoArqSW/backEnd/controllers/orderDetail"
 	productController "github.com/belenaguilarv/proyectoArqSW/backEnd/controllers/product"
 
 	userController "github.com/belenaguilarv/proyectoArqSW/backEnd/controllers/user"
@@ -27,12 +28,12 @@ func mapUrls() {
 	//Order Mapping
 	router.GET("/order/:id", orderController.GetOrderById)
 	router.GET("/order", orderController.GetOrders)
-	//router.POST("/neworder", orderController.OrderInsert)
+	//router.POST("/neworder", orderController.InsertOrder)
 
 	// Detail Mapping
 	router.GET("/orderDetail/:id", detailController.GetOrderDetailById)
 	router.GET("/orderDetail", detailController.GetOrderDetails)
-	//router.POST("/neworderDetail", orderDetailController.OrderDetailInsert)
+	router.POST("/neworderDetail", orderDetailController.InsertOrderDetail)
 
 	log.Info("Finishing mappings configurations")
 }

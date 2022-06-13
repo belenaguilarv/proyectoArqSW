@@ -36,7 +36,6 @@ func InsertOrderDetail(orderDetail model.OrderDetail) model.OrderDetail {
 	return orderDetail
 }
 
-/*
 func InsertOrdersDetail(ordersDetail model.OrderDetails) model.OrderDetails {
 
 	for _, orderDetail := range ordersDetail {
@@ -52,4 +51,3 @@ func InsertOrdersDetail(ordersDetail model.OrderDetails) model.OrderDetails {
 
 	return ordersDetail
 }
-*/
