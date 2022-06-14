@@ -52,7 +52,7 @@ func InsertOrderDetails(order_details model.OrderDetails) model.OrderDetails {
 		if result.Error != nil {
 			log.Error("Error al insertar order_detail")
 		}
+		log.Debug("Order_detail Created: ", order_detail.DetailId)
 	}
-	log.Debug("Order Details Created: ok")
 	return order_details
 }

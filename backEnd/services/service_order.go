@@ -1,9 +1,9 @@
 package services
 
 import (
-	orderCliente "github.com/belenaguilarv/proyectoArqSW/backEnd/clients/order" // conecta a la base de datos
+	orderCliente "github.com/belenaguilarv/proyectoArqSW/backEnd/clients/order"
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/dto"
-	e "github.com/belenaguilarv/proyectoArqSW/backEnd/errors" // que hace esto? (utils)
+	e "github.com/belenaguilarv/proyectoArqSW/backEnd/errors"
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/model"
 )
 
@@ -12,7 +12,7 @@ type orderService struct{}
 type orderServiceInterface interface {
 	GetOrderById(id int) (dto.OrderDto, e.ApiError)
 	GetOrders() (dto.OrdersDto, e.ApiError)
-	//InsertOrder(orderDto dto.OrderDto) (dto.OrderDto, e.ApiError)
+	InsertOrder(orderwithdetailsDto dto.OrderWithDetailsDto) (dto.OrderWithDetailsDto, e.ApiError)
 }
 
 var (
@@ -114,8 +114,8 @@ func (s *orderService) InsertOrder(orderwithdetailsDto dto.OrderWithDetailsDto) 
 
 		details = append(details, detail)
 	}
-	orderCliente.InsertOrder(order)
-	orderCliente.InsertOrderDetails(details)
+	orderCliente.InsertOrder(order)          // inserta el order en la base de datos
+	orderCliente.InsertOrderDetails(details) // inserta los detalles de la orden en la base de datos
 
 	return orderwithdetailsDto, nil
 }
