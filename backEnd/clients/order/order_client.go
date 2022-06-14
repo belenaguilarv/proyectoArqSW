@@ -44,3 +44,15 @@ func InsertOrder(order model.Order) model.Order {
 	log.Debug("Order Created: ", order.Id)
 	return order
 }
+
+func InsertOrderDetails(order_details model.OrderDetails) model.OrderDetails {
+
+	for _, order_detail := range order_details {
+		result := Db.Create(&order_detail)
+		if result.Error != nil {
+			log.Error("Error al insertar order_detail")
+		}
+	}
+	log.Debug("Order Details Created: ok")
+	return order_details
+}

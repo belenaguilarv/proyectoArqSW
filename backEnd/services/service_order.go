@@ -94,3 +94,28 @@ func (s *orderService) InsertOrder(orderDto dto.OrderWithDetailsDto) (dto.OrderD
 	return orderDto, nil
 }
 */
+func (s *orderService) InsertOrder(orderwithdetailsDto dto.OrderWithDetailsDto) (dto.OrderWithDetailsDto, e.ApiError) {
+	var order model.Order
+	var details model.OrderDetails
+
+	order.Date = orderwithdetailsDto.Date
+	order.TotalPrice = orderwithdetailsDto.TotalPrice
+	order.UserId = orderwithdetailsDto.UserId
+	order.Id = orderwithdetailsDto.Id
+
+	for _, OrderDetailDto := range orderwithdetailsDto.Details {
+		var detail model.OrderDetail
+		detail.DetailId = OrderDetailDto.DetailId
+		detail.Quantity = OrderDetailDto.Quantity
+		detail.Price = OrderDetailDto.Price
+		detail.TotalPrice = OrderDetailDto.TotalPrice
+		detail.ProductId = OrderDetailDto.ProductId
+		detail.OrderId = OrderDetailDto.OrderId
+
+		details = append(details, detail)
+	}
+	orderCliente.InsertOrder(order)
+	orderCliente.InsertOrderDetails(details)
+
+	return orderwithdetailsDto, nil
+}

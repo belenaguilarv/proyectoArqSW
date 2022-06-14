@@ -60,3 +60,21 @@ func InsertOrder(c *gin.Context) {
 	c.JSON(http.StatusCreated, orderDto)
 }
 */
+func InsertOrder(c *gin.Context) {
+	var orderDto dto.OrderWithDetailsDto
+	err := c.BindJSON(&orderDto)
+
+	if err != nil {
+		log.Error(err.Error())
+		c.JSON(http.StatusBadRequest, err.Error())
+		return
+	}
+
+	orderDto, er := service.OrderService.InsertOrder(orderDto)
+	// Error del Insert
+	if er != nil {
+		c.JSON(er.Status(), er)
+		return
+	}
+	c.JSON(http.StatusCreated, orderDto)
+}
