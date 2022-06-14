@@ -38,21 +38,3 @@ func GetProductById(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, productDto)
 }
-
-/*
-func GetProductsByCategory(c *gin.Context) {
-
-	log.Debug("Product id to load: " + c.Param("Category"))
-
-	category, _ := strconv.Atoi(c.Param("Category"))
-	var productsDto dto.ProductDto
-
-	productsDto, err := service.ProductService.GetProductsByCategory(category)
-
-	if err != nil {
-		c.JSON(err.Status(), err)
-		return
-	}
-	c.JSON(http.StatusOK, productsDto)
-
-}*/

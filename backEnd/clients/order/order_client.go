@@ -29,7 +29,7 @@ func UpdateMontoFinal(monto float32, id_Order int) float32 {
 	result := Db.Model(&model.Order{}).Where("id = ?", id_Order).Update("monto_final", monto)
 
 	if result.Error != nil {
-		//TODO Manage Errors
+
 		log.Error("Order no encontrada")
 	}
 	return monto

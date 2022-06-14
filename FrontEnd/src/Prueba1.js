@@ -61,7 +61,7 @@ function Prueba1() {
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="input-container">
-          <label>UserID </label>
+          <label>Username </label>
           <input type="text" name="uid" required />
           <label> Password </label>
           <input type="password" name="upass" required />

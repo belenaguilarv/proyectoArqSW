@@ -39,9 +39,8 @@ func GetOrders(c *gin.Context) {
 	c.JSON(http.StatusOK, ordersDto)
 }
 
-/*
 func InsertOrder(c *gin.Context) {
-	var orderDto dto.OrderDto
+	var orderDto dto.OrderWithDetailsDto
 	err := c.BindJSON(&orderDto)
 
 	if err != nil {
@@ -51,26 +50,6 @@ func InsertOrder(c *gin.Context) {
 	}
 
 	orderDto, er := service.OrderService.InsertOrder(orderDto)
-	// Error del Insert
-	if er != nil {
-		c.JSON(er.Status(), er)
-		return
-	}
-
-	c.JSON(http.StatusCreated, orderDto)
-}
-*/
-func InsertOrder(c *gin.Context) {
-	var orderDto dto.OrderWithDetailsDto
-	err := c.BindJSON(&orderDto) //delega a BindOrderWithDetails para parsear el json
-
-	if err != nil {
-		log.Error(err.Error())
-		c.JSON(http.StatusBadRequest, err.Error())
-		return
-	}
-
-	orderDto, er := service.OrderService.InsertOrder(orderDto) //delega al servicio
 	// Error del Insert
 	if er != nil {
 		c.JSON(er.Status(), er)

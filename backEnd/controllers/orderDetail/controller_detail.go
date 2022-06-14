@@ -43,7 +43,7 @@ func InsertOrderDetail(c *gin.Context) {
 	var orderDetailDto dto.OrderDetailDto
 	err := c.BindJSON(&orderDetailDto)
 
-	// Error Parsing json param
+	// error Parsing json param
 	if err != nil {
 		log.Error(err.Error())
 		c.JSON(http.StatusBadRequest, err.Error())
@@ -51,7 +51,7 @@ func InsertOrderDetail(c *gin.Context) {
 	}
 
 	orderDetailDto, er := service.OrderDetailService.InsertOrderDetail(orderDetailDto)
-	// Error del Insert
+	// error del Insert
 	if er != nil {
 		c.JSON(er.Status(), er)
 		return

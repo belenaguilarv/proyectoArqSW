@@ -76,6 +76,5 @@ func LoginUser(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusCreated, tokenDto)
-	//falta seguir con cosas del servis que aun no estan implementadas
 
 }

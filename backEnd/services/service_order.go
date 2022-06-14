@@ -57,43 +57,6 @@ func (s *orderService) GetOrders() (dto.OrdersDto, e.ApiError) {
 	return ordersDto, nil
 }
 
-/*
-func (s *orderService) InsertOrder(orderDto dto.OrderWithDetailsDto) (dto.OrderDto, e.ApiError) {
-
-	var order model.Order
-
-	order.TotalPrice = orderDto.TotalPrice
-	order.Id = orderDto.Id
-
-	order = orderCliente.InsertOrder(order)
-
-	var details model.OrderDetails
-	var total float32
-
-	for _, OrderDetailDto := range orderDto.Details {
-
-		var detail model.OrderDetail
-		detail.Id_Product = OrderDetailDto.Id_Producto
-
-		var product model.Product = productCliente.GetProductById(detail.Id_Product)
-		detail.Price = product.Price
-		detail.Cantidad = detailDto.Cantidad
-		detail.Total = detail.Precio_Unitario * detail.Cantidad
-		detail.Nombre = product.Name
-		detail.Id_Order = order.Id
-
-		total = total + detail.Total
-
-		details = append(details, detail)
-	}
-
-	orderCliente.UpdateMontoFinal(total, order.Id)
-
-	orderDetailCliente.InsertOrdersDetail(details)
-
-	return orderDto, nil
-}
-*/
 func (s *orderService) InsertOrder(orderwithdetailsDto dto.OrderWithDetailsDto) (dto.OrderWithDetailsDto, e.ApiError) {
 	var order model.Order
 	var details model.OrderDetails
@@ -114,8 +77,8 @@ func (s *orderService) InsertOrder(orderwithdetailsDto dto.OrderWithDetailsDto) 
 
 		details = append(details, detail)
 	}
-	orderCliente.InsertOrder(order)          // inserta el order en la base de datos
-	orderCliente.InsertOrderDetails(details) // inserta los detalles de la orden en la base de datos
+	orderCliente.InsertOrder(order) // arreglar para el final
+	orderCliente.InsertOrderDetails(details)
 
 	return orderwithdetailsDto, nil
 }

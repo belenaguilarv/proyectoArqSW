@@ -70,7 +70,7 @@ func (s *orderDetailService) InsertOrderDetail(orderDetailDto dto.OrderDetailDto
 	orderDetail.OrderId = orderDetailDto.OrderId
 	orderDetail.ProductId = orderDetailDto.ProductId
 
-	orderDetail = orderDetailCliente.InsertOrderDetail(orderDetail) // deriva al cliente
+	orderDetail = orderDetailCliente.InsertOrderDetail(orderDetail)
 
 	orderDetailDto.OrderId = orderDetail.OrderId
 	orderDetailDto.TotalPrice = orderDetail.TotalPrice
