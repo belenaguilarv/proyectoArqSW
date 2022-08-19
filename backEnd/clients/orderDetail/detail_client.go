@@ -32,7 +32,7 @@ func InsertOrderDetail(orderDetail model.OrderDetail) model.OrderDetail {
 	if result.Error != nil {
 		log.Error("")
 	}
-	log.Debug("OrderDetail Created: ", orderDetail.DetailId)
+	log.Debug("OrderDetail Created: ", orderDetail.Id)
 	return orderDetail
 }
 
@@ -42,7 +42,7 @@ func InsertOrdersDetail(ordersDetail model.OrderDetails) model.OrderDetails {
 
 		result := Db.Create(&orderDetail)
 
-		log.Debug("Order_Detail Created: ", orderDetail.DetailId)
+		log.Debug("Order_Detail Created: ", orderDetail.Id)
 
 		if result.Error != nil {
 			log.Error("")

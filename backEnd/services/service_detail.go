@@ -28,10 +28,10 @@ func (s *orderDetailService) GetOrderDetailById(id int) (dto.OrderDetailDto, e.A
 	var orderDetail model.OrderDetail = orderDetailCliente.GetOrderDetailById(id)
 	var orderDetailDto dto.OrderDetailDto
 
-	if orderDetail.DetailId == 0 {
+	if orderDetail.Id == 0 {
 		return orderDetailDto, e.NewBadRequestApiError("orderDetail not found")
 	}
-	orderDetailDto.DetailId = orderDetail.DetailId
+	orderDetailDto.Id = orderDetail.Id
 	orderDetailDto.Quantity = orderDetail.Quantity
 	orderDetailDto.Price = orderDetail.Price
 	orderDetailDto.TotalPrice = float32(orderDetail.TotalPrice)
@@ -48,7 +48,7 @@ func (s *orderDetailService) GetOrderDetails() (dto.OrderDetailsDto, e.ApiError)
 
 	for _, orderDetail := range orderDetails {
 		var orderDetailDto dto.OrderDetailDto
-		orderDetailDto.DetailId = orderDetail.DetailId
+		orderDetailDto.Id = orderDetail.Id
 		orderDetailDto.Quantity = orderDetail.Quantity
 		orderDetailDto.Price = orderDetail.Price
 		orderDetailDto.TotalPrice = float32(orderDetail.TotalPrice)

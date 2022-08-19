@@ -68,7 +68,7 @@ func (s *orderService) InsertOrder(orderwithdetailsDto dto.OrderWithDetailsDto) 
 
 	for _, OrderDetailDto := range orderwithdetailsDto.Details {
 		var detail model.OrderDetail
-		detail.DetailId = OrderDetailDto.DetailId
+		detail.Id = OrderDetailDto.Id
 		detail.Quantity = OrderDetailDto.Quantity
 		detail.Price = OrderDetailDto.Price
 		detail.TotalPrice = OrderDetailDto.TotalPrice
