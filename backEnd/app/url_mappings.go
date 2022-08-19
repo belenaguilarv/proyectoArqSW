@@ -13,25 +13,28 @@ import (
 
 func mapUrls() {
 	// Products Mapping
-	router.GET("/product/:id", productController.GetProductById)
-	router.GET("/product", productController.GetProducts)
+	router.GET("/product/:id", productController.GetProductById) // TODO OK
+	router.GET("/product", productController.GetProducts)        // TODO OK
 
 	// Users Mapping
-	router.GET("/user/:id", userController.GetUserById)
-	router.GET("/user", userController.GetUsers)
+	router.GET("/user/:id", userController.GetUserById) // confunde username con name ... correguir
+	router.GET("/user", userController.GetUsers)        // confunde username con name ... correguir
 
 	// Login Mapping
-	router.POST("/login", userController.LoginUser)
+	router.POST("/login", userController.LoginUser) // confunde username con name ... correguir
 
 	//Order Mapping
-	router.GET("/order/:id", orderController.GetOrderById)
-	router.GET("/order", orderController.GetOrders)
-	router.POST("/neworder", orderController.InsertOrder)
+	router.GET("/order/:id", orderController.GetOrderById) // TODO OK
+	router.GET("/order", orderController.GetOrders)        // TODO OK
+	//router.GET("/orderWithDetails", orderController.GetOrderWithDetails)         // FALTA IMPLEMENTAR
+	//router.GET("/orderWithDetails/:id", orderController.GetOrderWithDetailsById) // FALTA IMPLEMENTAR
+	//router.POST("/neworder", orderController.InsertOrderWithDetails)             // anda a medias, revisar
+	//router.DELETE("/DeleteCarrito/:id", orderController.DeleteOrder)             // FALTA IMPLEMENTAR
 
 	// Detail Mapping
-	router.GET("/orderDetail/:id", orderDetailController.GetOrderDetailById)
-	router.GET("/orderDetail", orderDetailController.GetOrderDetails)
-	router.POST("/neworderDetail", orderDetailController.InsertOrderDetail)
+	router.GET("/orderDetail/:id", orderDetailController.GetOrderDetailById) //np busca bien por id
+	router.GET("/orderDetail", orderDetailController.GetOrderDetails)        // no busca bien el order id
+	router.POST("/neworderDetail", orderDetailController.InsertOrderDetail)  // no devuelve el DetailId bien(si lo crea en la BD, pero no lo muestra bien)
 
 	log.Info("Finishing mappings configurations")
 }

@@ -1,7 +1,7 @@
 package dto
 
 type LoginDto struct {
-	Name     string `json:"user_name"`
+	Name     string `json:"username"`
 	Password string `json:"password"`
 }
 
