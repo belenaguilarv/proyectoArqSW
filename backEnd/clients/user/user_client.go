@@ -24,9 +24,9 @@ func GetUsers() model.Users {
 	return users
 }
 
-func GetUserByName(LoginDto dto.LoginDto) model.User {
+func GetUserByUserName(LoginDto dto.LoginDto) model.User {
 	var user model.User
-	Db.First(&user, "Name = ? AND password = ?", LoginDto.Name, LoginDto.Password)
+	Db.First(&user, "UserName = ? AND password = ?", LoginDto.UserName, LoginDto.Password)
 	log.Debug("User: ", user)
 	return user
 }

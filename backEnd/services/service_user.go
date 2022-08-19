@@ -34,12 +34,14 @@ func (s *userService) GetUserById(id int) (dto.UserDto, e.ApiError) {
 	if user.Id == 0 {
 		return userDto, e.NewBadRequestApiError("user not found")
 	}
-	userDto.Name = user.Name
 	userDto.Id = user.Id
+	userDto.UserName = user.UserName
 	userDto.Password = user.Password
 	userDto.Number = user.Number
 	userDto.Street = user.Street
 	userDto.City = user.City
+	userDto.Name = user.Name
+
 	return userDto, nil
 }
 
@@ -50,20 +52,20 @@ func (s *userService) GetUsers() (dto.UsersDto, e.ApiError) {
 
 	for _, user := range users {
 		var userDto dto.UserDto
-		userDto.Name = user.Name
 		userDto.Id = user.Id
+		userDto.UserName = user.UserName
 		userDto.Password = user.Password
 		userDto.Number = user.Number
 		userDto.Street = user.Street
 		userDto.City = user.City
-		usersDto = append(usersDto, userDto)
+		userDto.Name = user.Name
 	}
 
 	return usersDto, nil
 }
 
 func (s *userService) LoginUser(loginDto dto.LoginDto) (dto.Token, e.ApiError) {
-	var user model.User = userCliente.GetUserByName(loginDto)
+	var user model.User = userCliente.GetUserByUserName(loginDto)
 
 	var tokenDto dto.Token
 

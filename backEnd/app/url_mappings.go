@@ -17,11 +17,11 @@ func mapUrls() {
 	router.GET("/product", productController.GetProducts)        // TODO OK
 
 	// Users Mapping
-	router.GET("/user/:id", userController.GetUserById) // confunde username con name ... correguir
-	router.GET("/user", userController.GetUsers)        // confunde username con name ... correguir
+	router.GET("/user/:id", userController.GetUserById) // No trae username
+	router.GET("/user", userController.GetUsers)        // No trae nada
 
 	// Login Mapping
-	router.POST("/login", userController.LoginUser) // confunde username con name ... correguir
+	router.POST("/login", userController.LoginUser) //TODO OK
 
 	//Order Mapping
 	router.GET("/order/:id", orderController.GetOrderById) // TODO OK
