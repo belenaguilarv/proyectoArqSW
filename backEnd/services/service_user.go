@@ -59,6 +59,7 @@ func (s *userService) GetUsers() (dto.UsersDto, e.ApiError) {
 		userDto.Street = user.Street
 		userDto.City = user.City
 		userDto.Name = user.Name
+		usersDto = append(usersDto, userDto)
 	}
 
 	return usersDto, nil

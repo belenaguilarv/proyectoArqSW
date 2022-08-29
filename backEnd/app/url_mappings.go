@@ -17,8 +17,8 @@ func mapUrls() {
 	router.GET("/product", productController.GetProducts)        // TODO OK
 
 	// Users Mapping
-	router.GET("/user/:id", userController.GetUserById) // No trae username
-	router.GET("/user", userController.GetUsers)        // No trae nada
+	router.GET("/user/:id", userController.GetUserById) // No trae username  - pedir ayuda al profe
+	router.GET("/user", userController.GetUsers)        // No trae username  - pedir ayuda al profe
 
 	// Login Mapping
 	router.POST("/login", userController.LoginUser) //TODO OK
