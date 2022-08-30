@@ -34,7 +34,7 @@ func (s *orderDetailService) GetOrderDetailById(id int) (dto.OrderDetailDto, e.A
 	orderDetailDto.Id = orderDetail.Id
 	orderDetailDto.Quantity = orderDetail.Quantity
 	orderDetailDto.Price = orderDetail.Price
-	orderDetailDto.TotalPrice = float32(orderDetail.TotalPrice)
+	orderDetailDto.TotalPrice = orderDetail.TotalPrice
 	orderDetailDto.OrderId = orderDetail.OrderId
 	orderDetailDto.ProductId = orderDetail.ProductId
 	return orderDetailDto, nil
@@ -72,7 +72,7 @@ func (s *orderDetailService) InsertOrderDetail(orderDetailDto dto.OrderDetailDto
 
 	orderDetail = orderDetailCliente.InsertOrderDetail(orderDetail)
 
-	orderDetailDto.OrderId = orderDetail.OrderId
+	orderDetailDto.Id = orderDetail.Id
 	orderDetailDto.TotalPrice = orderDetail.TotalPrice
 
 	return orderDetailDto, nil

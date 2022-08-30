@@ -2,6 +2,7 @@ package services
 
 import (
 	orderCliente "github.com/belenaguilarv/proyectoArqSW/backEnd/clients/order"
+	orderDetailCliente "github.com/belenaguilarv/proyectoArqSW/backEnd/clients/orderDetail"
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/dto"
 	e "github.com/belenaguilarv/proyectoArqSW/backEnd/errors"
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/model"
@@ -13,6 +14,7 @@ type orderServiceInterface interface {
 	GetOrderById(id int) (dto.OrderDto, e.ApiError)
 	GetOrders() (dto.OrdersDto, e.ApiError)
 	InsertOrder(orderwithdetailsDto dto.OrderWithDetailsDto) (dto.OrderWithDetailsDto, e.ApiError)
+	GetOrdersWithDetails() (dto.OrdersWithDetailsDto, e.ApiError)
 }
 
 var (
@@ -51,6 +53,7 @@ func (s *orderService) GetOrders() (dto.OrdersDto, e.ApiError) {
 		orderDto.Date = order.Date
 		orderDto.TotalPrice = order.TotalPrice
 		orderDto.UserId = order.UserId
+
 		ordersDto = append(ordersDto, orderDto)
 	}
 
@@ -81,4 +84,48 @@ func (s *orderService) InsertOrder(orderwithdetailsDto dto.OrderWithDetailsDto) 
 	orderCliente.InsertOrderDetails(details)
 
 	return orderwithdetailsDto, nil
+}
+
+func (s *orderService) GetOrdersWithDetails() (dto.OrdersWithDetailsDto, e.ApiError) {
+	var orders model.Orders = orderCliente.GetOrders()
+	var details model.OrderDetails = orderDetailCliente.GetOrderDetails()
+	var ordersWithDetailsDto dto.OrdersWithDetailsDto
+
+	for _, order := range orders {
+		var orderWithDetailsDto dto.OrderWithDetailsDto
+
+		orderWithDetailsDto.Id = order.Id
+		orderWithDetailsDto.Date = order.Date
+		orderWithDetailsDto.TotalPrice = order.TotalPrice
+		orderWithDetailsDto.UserId = order.UserId
+
+		ordersWithDetailsDto = append(ordersWithDetailsDto, orderWithDetailsDto)
+	}
+
+	for j := 0; j < len(ordersWithDetailsDto); j++ {
+		var control bool = false
+		var detailsssDto dto.OrderDetailsDto
+
+		for i := 0; i < len(details); i++ {
+			if details[i].OrderId == ordersWithDetailsDto[j].Id {
+				control = true
+				var detailDto dto.OrderDetailDto
+
+				detailDto.Id = details[i].Id
+				detailDto.Quantity = details[i].Quantity
+				detailDto.Price = details[i].Price
+				detailDto.TotalPrice = details[i].TotalPrice
+				detailDto.ProductId = details[i].ProductId
+				detailDto.OrderId = details[i].OrderId
+
+				detailsssDto = append(detailsssDto, detailDto)
+			}
+		}
+		if control {
+			ordersWithDetailsDto[j].Details = detailsssDto
+		}
+	}
+
+	return ordersWithDetailsDto, nil
+
 }

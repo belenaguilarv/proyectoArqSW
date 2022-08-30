@@ -16,3 +16,5 @@ type OrderWithDetailsDto struct {
 	UserId     int             `json:"user_id"`
 	Details    OrderDetailsDto `json:"details"`
 }
+
+type OrdersWithDetailsDto []OrderWithDetailsDto

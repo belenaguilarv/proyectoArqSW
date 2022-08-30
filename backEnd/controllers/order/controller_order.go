@@ -39,6 +39,18 @@ func GetOrders(c *gin.Context) {
 	c.JSON(http.StatusOK, ordersDto)
 }
 
+func GetOrdersWithDetails(c *gin.Context) {
+	var ordersWithDetailsDTO dto.OrdersWithDetailsDto
+	ordersWithDetailsDTO, err := service.OrderService.GetOrdersWithDetails()
+
+	if err != nil {
+		c.JSON(err.Status(), err)
+		return
+	}
+
+	c.JSON(http.StatusOK, ordersWithDetailsDTO)
+}
+
 func InsertOrder(c *gin.Context) {
 	var orderDto dto.OrderWithDetailsDto
 	err := c.BindJSON(&orderDto)

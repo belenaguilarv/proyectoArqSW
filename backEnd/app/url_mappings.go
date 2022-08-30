@@ -17,8 +17,8 @@ func mapUrls() {
 	router.GET("/product", productController.GetProducts)        // TODO OK
 
 	// Users Mapping
-	router.GET("/user/:id", userController.GetUserById) // No trae username  - pedir ayuda al profe
-	router.GET("/user", userController.GetUsers)        // No trae username  - pedir ayuda al profe
+	router.GET("/user/:id", userController.GetUserById) // TODO OK
+	router.GET("/user", userController.GetUsers)        // TODO OK
 
 	// Login Mapping
 	router.POST("/login", userController.LoginUser) //TODO OK
@@ -26,15 +26,16 @@ func mapUrls() {
 	//Order Mapping
 	router.GET("/order/:id", orderController.GetOrderById) // TODO OK
 	router.GET("/order", orderController.GetOrders)        // TODO OK
-	//router.GET("/orderWithDetails", orderController.GetOrderWithDetails)         // FALTA IMPLEMENTAR
+
+	router.GET("/ordersWithDetails", orderController.GetOrdersWithDetails) // TODO OK
 	//router.GET("/orderWithDetails/:id", orderController.GetOrderWithDetailsById) // FALTA IMPLEMENTAR
 	//router.POST("/neworder", orderController.InsertOrderWithDetails)             // anda a medias, revisar
 	//router.DELETE("/DeleteCarrito/:id", orderController.DeleteOrder)             // FALTA IMPLEMENTAR
 
 	// Detail Mapping
-	router.GET("/orderDetail/:id", orderDetailController.GetOrderDetailById) //np busca bien por id
-	router.GET("/orderDetail", orderDetailController.GetOrderDetails)        // no busca bien el order id
-	router.POST("/neworderDetail", orderDetailController.InsertOrderDetail)  // no devuelve el DetailId bien(si lo crea en la BD, pero no lo muestra bien)
+	router.GET("/orderDetail/:id", orderDetailController.GetOrderDetailById) // TODO OK
+	router.GET("/orderDetail", orderDetailController.GetOrderDetails)        // TODO OK
+	router.POST("/neworderDetail", orderDetailController.InsertOrderDetail)  // TODO OK
 
 	log.Info("Finishing mappings configurations")
 }

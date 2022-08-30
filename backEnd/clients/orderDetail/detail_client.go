@@ -11,7 +11,7 @@ var Db *gorm.DB
 func GetOrderDetailById(id int) model.OrderDetail {
 	var orderDetail model.OrderDetail
 
-	Db.Where("detail_id = ?", id).First(&orderDetail)
+	Db.Where("id = ?", id).First(&orderDetail)
 	log.Debug("OrderDetail: ", orderDetail)
 
 	return orderDetail
