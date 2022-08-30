@@ -27,8 +27,8 @@ func mapUrls() {
 	router.GET("/order/:id", orderController.GetOrderById) // TODO OK
 	router.GET("/order", orderController.GetOrders)        // TODO OK
 
-	router.GET("/ordersWithDetails", orderController.GetOrdersWithDetails) // TODO OK
-	//router.GET("/orderWithDetails/:id", orderController.GetOrderWithDetailsById) // FALTA IMPLEMENTAR
+	router.GET("/ordersWithDetails", orderController.GetOrdersWithDetails)       // TODO OK
+	router.GET("/orderWithDetails/:id", orderController.GetOrderWithDetailsById) // TODO OK
 	//router.POST("/neworder", orderController.InsertOrderWithDetails)             // anda a medias, revisar
 	//router.DELETE("/DeleteCarrito/:id", orderController.DeleteOrder)             // FALTA IMPLEMENTAR
 

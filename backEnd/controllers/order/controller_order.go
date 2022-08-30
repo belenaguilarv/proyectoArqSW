@@ -51,6 +51,22 @@ func GetOrdersWithDetails(c *gin.Context) {
 	c.JSON(http.StatusOK, ordersWithDetailsDTO)
 }
 
+func GetOrderWithDetailsById(c *gin.Context) {
+	log.Debug("Order id to load: " + c.Param("id"))
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	var orderWithDetailsdto dto.OrderWithDetailsDto
+	orderWithDetailsdto, err := service.OrderService.GetOrderWithDetailsById(id)
+
+	if err != nil {
+		c.JSON(err.Status(), err)
+		return
+	}
+
+	c.JSON(http.StatusOK, orderWithDetailsdto)
+
+}
+
 func InsertOrder(c *gin.Context) {
 	var orderDto dto.OrderWithDetailsDto
 	err := c.BindJSON(&orderDto)

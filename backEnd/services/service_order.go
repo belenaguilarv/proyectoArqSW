@@ -15,6 +15,7 @@ type orderServiceInterface interface {
 	GetOrders() (dto.OrdersDto, e.ApiError)
 	InsertOrder(orderwithdetailsDto dto.OrderWithDetailsDto) (dto.OrderWithDetailsDto, e.ApiError)
 	GetOrdersWithDetails() (dto.OrdersWithDetailsDto, e.ApiError)
+	GetOrderWithDetailsById(id int) (dto.OrderWithDetailsDto, e.ApiError)
 }
 
 var (
@@ -127,5 +128,41 @@ func (s *orderService) GetOrdersWithDetails() (dto.OrdersWithDetailsDto, e.ApiEr
 	}
 
 	return ordersWithDetailsDto, nil
+}
+
+func (s *orderService) GetOrderWithDetailsById(id int) (dto.OrderWithDetailsDto, e.ApiError) {
+	var order model.Order = orderCliente.GetOrderById(id)
+	var details model.OrderDetails = orderDetailCliente.GetOrderDetails()
+
+	var orderwithdetailsDto dto.OrderWithDetailsDto
+	var detailsssDto dto.OrderDetailsDto
+
+	if order.Id == 0 {
+		return orderwithdetailsDto, e.NewBadRequestApiError("order not found")
+	}
+
+	orderwithdetailsDto.Id = order.Id
+	orderwithdetailsDto.Date = order.Date
+	orderwithdetailsDto.TotalPrice = order.TotalPrice
+	orderwithdetailsDto.UserId = order.UserId
+
+	for _, detail := range details {
+
+		if detail.OrderId == order.Id {
+			var detailDto dto.OrderDetailDto
+
+			detailDto.Id = detail.Id
+			detailDto.OrderId = detail.OrderId
+			detailDto.Price = detail.Price
+			detailDto.ProductId = detail.ProductId
+			detailDto.Quantity = detail.Quantity
+			detailDto.TotalPrice = detail.TotalPrice
+
+			detailsssDto = append(detailsssDto, detailDto)
+		}
+	}
+	orderwithdetailsDto.Details = detailsssDto
+
+	return orderwithdetailsDto, nil
 
 }
