@@ -200,29 +200,42 @@ func (s *orderService) InsertOrder(orderwithdetailsDto dto.OrderWithDetailsDto) 
 }
 
 func (s *orderService) DeleteOrder(id int) (dto.OrderWithDetailsDto, e.ApiError) {
-	var order model.Order = orderCliente.DeleteOrderById(id)
-	var details model.OrderDetails = orderCliente.DeleteDetailsByOrderId(id)
 
-	var RETORNO dto.OrderWithDetailsDto
-	RETORNO.Date = order.Date
-	RETORNO.Id = order.Id
-	RETORNO.TotalPrice = order.TotalPrice
-	RETORNO.UserId = order.UserId
+	var order model.Order = orderCliente.GetOrderById(id)
+	var details model.OrderDetails = orderDetailCliente.GetOrderDetails()
 
-	var DETALLES dto.OrderDetailsDto
+	var orderwithdetailsDto dto.OrderWithDetailsDto
+	var detailsssDto dto.OrderDetailsDto
 
-	for _, detail := range details {
-		var DETALLE dto.OrderDetailDto
-		DETALLE.Id = detail.Id
-		DETALLE.OrderId = detail.OrderId
-		DETALLE.Price = detail.Price
-		DETALLE.ProductId = detail.ProductId
-		DETALLE.Quantity = detail.Quantity
-		DETALLE.TotalPrice = detail.TotalPrice
-
-		DETALLES = append(DETALLES, DETALLE)
+	if order.Id == 0 {
+		return orderwithdetailsDto, e.NewBadRequestApiError("order not found")
 	}
 
-	RETORNO.Details = DETALLES
-	return RETORNO, nil
+	orderwithdetailsDto.Id = order.Id
+	orderwithdetailsDto.Date = order.Date
+	orderwithdetailsDto.TotalPrice = order.TotalPrice
+	orderwithdetailsDto.UserId = order.UserId
+
+	for _, detail := range details {
+
+		if detail.OrderId == order.Id {
+			var detailDto dto.OrderDetailDto
+
+			detailDto.Id = detail.Id
+			detailDto.OrderId = detail.OrderId
+			detailDto.Price = detail.Price
+			detailDto.ProductId = detail.ProductId
+			detailDto.Quantity = detail.Quantity
+			detailDto.TotalPrice = detail.TotalPrice
+
+			detailsssDto = append(detailsssDto, detailDto)
+		}
+	}
+	orderwithdetailsDto.Details = detailsssDto
+
+	orderCliente.DeleteOrderById(id)
+	orderCliente.DeleteDetailsByOrderId(id)
+
+	return orderwithdetailsDto, nil
+
 }

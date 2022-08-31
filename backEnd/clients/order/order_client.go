@@ -54,28 +54,30 @@ func InsertOrderDetail(order_detail model.OrderDetail) model.OrderDetail {
 	log.Debug("Detail Created: ", order_detail.Id)
 	return order_detail
 }
-func DeleteOrderById(id int) model.Order {
+func DeleteOrderById(id int) {
 	var order model.Order
 	result := Db.Where("id = ?", id).Delete(&order)
 
 	if result.Error != nil {
 		log.Error("Orden no encontrada")
+		return
 	}
 
-	log.Debug("DELETED order:", order)
-	return order
+	log.Debug("order DELETED")
+	return
 
 }
-func DeleteDetailsByOrderId(orderId int) model.OrderDetails {
+func DeleteDetailsByOrderId(orderId int) {
 	var details model.OrderDetails
 
 	result := Db.Where("order_id", orderId).Delete(&details)
 
 	if result.Error != nil {
 		log.Error("error al eliminar los detalles")
+		return
 	}
 
 	log.Debug("DELETED details:", details)
-	return details
+	return
 
 }
