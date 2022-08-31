@@ -61,32 +61,6 @@ func (s *orderService) GetOrders() (dto.OrdersDto, e.ApiError) {
 	return ordersDto, nil
 }
 
-func (s *orderService) InsertOrder(orderwithdetailsDto dto.OrderWithDetailsDto) (dto.OrderWithDetailsDto, e.ApiError) {
-	var order model.Order
-	var details model.OrderDetails
-
-	order.Date = orderwithdetailsDto.Date
-	order.TotalPrice = orderwithdetailsDto.TotalPrice
-	order.UserId = orderwithdetailsDto.UserId
-	order.Id = orderwithdetailsDto.Id
-
-	for _, OrderDetailDto := range orderwithdetailsDto.Details {
-		var detail model.OrderDetail
-		detail.Id = OrderDetailDto.Id
-		detail.Quantity = OrderDetailDto.Quantity
-		detail.Price = OrderDetailDto.Price
-		detail.TotalPrice = OrderDetailDto.TotalPrice
-		detail.ProductId = OrderDetailDto.ProductId
-		detail.OrderId = OrderDetailDto.OrderId
-
-		details = append(details, detail)
-	}
-	orderCliente.InsertOrder(order) // arreglar para el final
-	orderCliente.InsertOrderDetails(details)
-
-	return orderwithdetailsDto, nil
-}
-
 func (s *orderService) GetOrdersWithDetails() (dto.OrdersWithDetailsDto, e.ApiError) {
 	var orders model.Orders = orderCliente.GetOrders()
 	var details model.OrderDetails = orderDetailCliente.GetOrderDetails()
@@ -165,4 +139,60 @@ func (s *orderService) GetOrderWithDetailsById(id int) (dto.OrderWithDetailsDto,
 
 	return orderwithdetailsDto, nil
 
+}
+func (s *orderService) InsertOrder(orderwithdetailsDto dto.OrderWithDetailsDto) (dto.OrderWithDetailsDto, e.ApiError) {
+
+	//recibe de order: date, user_id y de los detalles: quantity, price, product_id
+
+	var order model.Order
+	var detailsssDto dto.OrderDetailsDto
+
+	order.Date = orderwithdetailsDto.Date
+	order.UserId = orderwithdetailsDto.UserId
+
+	var TOTALPRICE float32
+
+	for _, OrderDetailDto := range orderwithdetailsDto.Details {
+		TOTALPRICE = TOTALPRICE + (float32(OrderDetailDto.Quantity) * OrderDetailDto.Price)
+	}
+
+	order.TotalPrice = TOTALPRICE
+	order = orderCliente.InsertOrder(order)
+	orderwithdetailsDto.Id = order.Id
+	orderwithdetailsDto.TotalPrice = TOTALPRICE
+
+	for _, OrderDetailDto := range orderwithdetailsDto.Details {
+		var detail model.OrderDetail
+
+		detail.OrderId = order.Id
+		OrderDetailDto.OrderId = order.Id
+		detail.Price = OrderDetailDto.Price
+		detail.Quantity = OrderDetailDto.Quantity
+		detail.TotalPrice = OrderDetailDto.Price * float32(OrderDetailDto.Quantity)
+		detail.ProductId = OrderDetailDto.ProductId
+
+		detail = orderCliente.InsertOrderDetail(detail)
+	}
+
+	var detailsss model.OrderDetails = orderDetailCliente.GetOrderDetails()
+
+	for _, detail := range detailsss {
+
+		if detail.OrderId == order.Id {
+			var detailDto dto.OrderDetailDto
+
+			detailDto.Id = detail.Id
+			detailDto.OrderId = detail.OrderId
+			detailDto.Price = detail.Price
+			detailDto.ProductId = detail.ProductId
+			detailDto.Quantity = detail.Quantity
+			detailDto.TotalPrice = detail.TotalPrice
+
+			detailsssDto = append(detailsssDto, detailDto)
+		}
+	}
+
+	orderwithdetailsDto.Details = detailsssDto
+	print(detailsss)
+	return orderwithdetailsDto, nil
 }

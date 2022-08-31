@@ -29,8 +29,10 @@ func mapUrls() {
 
 	router.GET("/ordersWithDetails", orderController.GetOrdersWithDetails)       // TODO OK
 	router.GET("/orderWithDetails/:id", orderController.GetOrderWithDetailsById) // TODO OK
-	//router.POST("/neworder", orderController.InsertOrderWithDetails)             // anda a medias, revisar
+	router.POST("/neworder", orderController.InsertOrder)                        // TODO OK
 	//router.DELETE("/DeleteCarrito/:id", orderController.DeleteOrder)             // FALTA IMPLEMENTAR
+
+	// NOTA: puedo agregar ESTADO en orden para avisar si esta comprado o en estado carrito
 
 	// Detail Mapping
 	router.GET("/orderDetail/:id", orderDetailController.GetOrderDetailById) // TODO OK
