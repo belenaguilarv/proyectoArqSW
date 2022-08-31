@@ -16,6 +16,7 @@ type orderServiceInterface interface {
 	InsertOrder(orderwithdetailsDto dto.OrderWithDetailsDto) (dto.OrderWithDetailsDto, e.ApiError)
 	GetOrdersWithDetails() (dto.OrdersWithDetailsDto, e.ApiError)
 	GetOrderWithDetailsById(id int) (dto.OrderWithDetailsDto, e.ApiError)
+	DeleteOrder(id int) (dto.OrderWithDetailsDto, e.ApiError)
 }
 
 var (
@@ -140,6 +141,7 @@ func (s *orderService) GetOrderWithDetailsById(id int) (dto.OrderWithDetailsDto,
 	return orderwithdetailsDto, nil
 
 }
+
 func (s *orderService) InsertOrder(orderwithdetailsDto dto.OrderWithDetailsDto) (dto.OrderWithDetailsDto, e.ApiError) {
 
 	//recibe de order: date, user_id y de los detalles: quantity, price, product_id
@@ -195,4 +197,32 @@ func (s *orderService) InsertOrder(orderwithdetailsDto dto.OrderWithDetailsDto) 
 	orderwithdetailsDto.Details = detailsssDto
 	print(detailsss)
 	return orderwithdetailsDto, nil
+}
+
+func (s *orderService) DeleteOrder(id int) (dto.OrderWithDetailsDto, e.ApiError) {
+	var order model.Order = orderCliente.DeleteOrderById(id)
+	var details model.OrderDetails = orderCliente.DeleteDetailsByOrderId(id)
+
+	var RETORNO dto.OrderWithDetailsDto
+	RETORNO.Date = order.Date
+	RETORNO.Id = order.Id
+	RETORNO.TotalPrice = order.TotalPrice
+	RETORNO.UserId = order.UserId
+
+	var DETALLES dto.OrderDetailsDto
+
+	for _, detail := range details {
+		var DETALLE dto.OrderDetailDto
+		DETALLE.Id = detail.Id
+		DETALLE.OrderId = detail.OrderId
+		DETALLE.Price = detail.Price
+		DETALLE.ProductId = detail.ProductId
+		DETALLE.Quantity = detail.Quantity
+		DETALLE.TotalPrice = detail.TotalPrice
+
+		DETALLES = append(DETALLES, DETALLE)
+	}
+
+	RETORNO.Details = DETALLES
+	return RETORNO, nil
 }
