@@ -30,7 +30,7 @@ func mapUrls() {
 	router.GET("/ordersWithDetails", orderController.GetOrdersWithDetails)       // TODO OK
 	router.GET("/orderWithDetails/:id", orderController.GetOrderWithDetailsById) // TODO OK
 	router.POST("/neworder", orderController.InsertOrder)                        // TODO OK
-	router.DELETE("/DeleteCarrito/:id", orderController.DeleteOrder)             //ELIMINA EN LA BASE DE DATOS PERO NO INDICA BIEN QUE ELIMIN
+	router.DELETE("/DeleteCarrito/:id", orderController.DeleteOrder)             // TODO OK
 
 	// NOTA: puedo agregar ESTADO en orden para avisar si esta comprado o en estado carrito
 
