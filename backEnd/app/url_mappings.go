@@ -30,8 +30,9 @@ func mapUrls() {
 
 	router.GET("/ordersWithDetails", orderController.GetOrdersWithDetails)       // TODO OK
 	router.GET("/orderWithDetails/:id", orderController.GetOrderWithDetailsById) // TODO OK
-	router.POST("/neworder", orderController.InsertOrder)                        // TODO OK
-	router.DELETE("/DeleteCarrito/:id", orderController.DeleteOrder)             // TODO OK
+	router.GET("/ordersWithDetails/:id", orderController.GetOrdersWithDetailsByUserId)
+	router.POST("/neworder", orderController.InsertOrder)            // TODO OK
+	router.DELETE("/DeleteCarrito/:id", orderController.DeleteOrder) // TODO OK
 
 	// NOTA: puedo agregar ESTADO en orden para avisar si esta comprado o en estado carrito
 

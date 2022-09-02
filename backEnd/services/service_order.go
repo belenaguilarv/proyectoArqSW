@@ -17,6 +17,7 @@ type orderServiceInterface interface {
 	GetOrdersWithDetails() (dto.OrdersWithDetailsDto, e.ApiError)
 	GetOrderWithDetailsById(id int) (dto.OrderWithDetailsDto, e.ApiError)
 	DeleteOrder(id int) (dto.OrderWithDetailsDto, e.ApiError)
+	GetOrdersWithDetailsByUserId(order_id int) (dto.OrdersWithDetailsDto, e.ApiError)
 }
 
 var (
@@ -238,4 +239,49 @@ func (s *orderService) DeleteOrder(id int) (dto.OrderWithDetailsDto, e.ApiError)
 
 	return orderwithdetailsDto, nil
 
+}
+
+func (s *orderService) GetOrdersWithDetailsByUserId(id int) (dto.OrdersWithDetailsDto, e.ApiError) {
+	var orders model.Orders = orderCliente.GetOrders()
+	var details model.OrderDetails = orderDetailCliente.GetOrderDetails()
+	var ordersWithDetailsDto dto.OrdersWithDetailsDto
+
+	for _, order := range orders {
+		if order.UserId == id {
+			var orderWithDetailsDto dto.OrderWithDetailsDto
+
+			orderWithDetailsDto.Id = order.Id
+			orderWithDetailsDto.Date = order.Date
+			orderWithDetailsDto.TotalPrice = order.TotalPrice
+			orderWithDetailsDto.UserId = order.UserId
+
+			ordersWithDetailsDto = append(ordersWithDetailsDto, orderWithDetailsDto)
+		}
+	}
+
+	for j := 0; j < len(ordersWithDetailsDto); j++ {
+		var control bool = false
+		var detailsssDto dto.OrderDetailsDto
+
+		for i := 0; i < len(details); i++ {
+			if details[i].OrderId == ordersWithDetailsDto[j].Id {
+				control = true
+				var detailDto dto.OrderDetailDto
+
+				detailDto.Id = details[i].Id
+				detailDto.Quantity = details[i].Quantity
+				detailDto.Price = details[i].Price
+				detailDto.TotalPrice = details[i].TotalPrice
+				detailDto.ProductId = details[i].ProductId
+				detailDto.OrderId = details[i].OrderId
+
+				detailsssDto = append(detailsssDto, detailDto)
+			}
+		}
+		if control {
+			ordersWithDetailsDto[j].Details = detailsssDto
+		}
+	}
+
+	return ordersWithDetailsDto, nil
 }
