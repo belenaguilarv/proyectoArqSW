@@ -30,3 +30,13 @@ func GetUserByUserName(LoginDto dto.LoginDto) model.User {
 	log.Debug("User: ", user)
 	return user
 }
+
+func NewUser(user model.User) model.User {
+	result := Db.Create(&user)
+
+	if result.Error != nil {
+		log.Error("ERROR al crear el usuario")
+	}
+	log.Debug("User Created: ", user.Id)
+	return user
+}

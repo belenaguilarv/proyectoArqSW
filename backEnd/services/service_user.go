@@ -3,6 +3,7 @@ package services
 import (
 	userCliente "github.com/belenaguilarv/proyectoArqSW/backEnd/clients/user"
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/dto"
+	crypto "github.com/belenaguilarv/proyectoArqSW/backEnd/encriptado"
 	e "github.com/belenaguilarv/proyectoArqSW/backEnd/errors"
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/model"
 	"github.com/golang-jwt/jwt"
@@ -14,6 +15,7 @@ type userServiceInterface interface {
 	GetUserById(id int) (dto.UserDto, e.ApiError)
 	GetUsers() (dto.UsersDto, e.ApiError)
 	LoginUser(loginDto dto.LoginDto) (dto.Token, e.ApiError)
+	NewUser(usersDto dto.UserDto) (dto.UserDto, e.ApiError)
 }
 
 var jwtKey = []byte("secret_key")
@@ -66,6 +68,7 @@ func (s *userService) GetUsers() (dto.UsersDto, e.ApiError) {
 }
 
 func (s *userService) LoginUser(loginDto dto.LoginDto) (dto.Token, e.ApiError) {
+	loginDto.Password = crypto.SSHA256(loginDto.Password)
 	var user model.User = userCliente.GetUserByUserName(loginDto)
 
 	var tokenDto dto.Token
@@ -81,4 +84,23 @@ func (s *userService) LoginUser(loginDto dto.LoginDto) (dto.Token, e.ApiError) {
 		tokenDto.Id = user.Id
 	}
 	return tokenDto, nil
+}
+
+func (s *userService) NewUser(userDto dto.UserDto) (dto.UserDto, e.ApiError) {
+	var user model.User
+
+	user.Name = userDto.Name
+	user.City = userDto.City
+	user.Number = userDto.Number
+	user.Password = crypto.SSHA256(userDto.Password)
+	user.UserName = userDto.UserName
+	user.Street = userDto.Street
+
+	user = userCliente.NewUser(user)
+
+	userDto.Password = user.Password
+	userDto.Id = user.Id
+
+	return userDto, nil
+
 }

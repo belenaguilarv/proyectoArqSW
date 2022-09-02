@@ -78,3 +78,24 @@ func LoginUser(c *gin.Context) {
 	c.JSON(http.StatusCreated, tokenDto)
 
 }
+
+func NewUser(c *gin.Context) {
+	var userDto dto.UserDto
+	err := c.BindJSON(&userDto)
+
+	if err != nil {
+		log.Error(err.Error())
+		c.JSON(http.StatusBadRequest, err.Error())
+		return
+	}
+
+	userDto, errr := service.UserService.NewUser(userDto)
+
+	if err != nil {
+		c.JSON(errr.Status(), errr)
+		log.Error(errr.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, userDto)
+}

@@ -19,6 +19,7 @@ func mapUrls() {
 	// Users Mapping
 	router.GET("/user/:id", userController.GetUserById) // TODO OK
 	router.GET("/user", userController.GetUsers)        // TODO OK
+	router.POST("/user", userController.NewUser)        //TODO OK
 
 	// Login Mapping
 	router.POST("/login", userController.LoginUser) //TODO OK

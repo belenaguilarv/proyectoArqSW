@@ -78,7 +78,6 @@ func InsertOrder(c *gin.Context) {
 	}
 
 	orderDto, er := service.OrderService.InsertOrder(orderDto)
-	// Error del Insert
 	if er != nil {
 		c.JSON(er.Status(), er)
 		return
