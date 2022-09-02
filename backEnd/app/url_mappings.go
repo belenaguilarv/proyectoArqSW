@@ -15,6 +15,7 @@ func mapUrls() {
 	// Products Mapping
 	router.GET("/product/:id", productController.GetProductById) // TODO OK
 	router.GET("/product", productController.GetProducts)        // TODO OK
+	router.GET("/productXpalabraClave", productController.GetProductsBYpalabra)
 
 	// Users Mapping
 	router.GET("/user/:id", userController.GetUserById) // TODO OK

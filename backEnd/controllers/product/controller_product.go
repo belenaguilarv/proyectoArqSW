@@ -38,3 +38,24 @@ func GetProductById(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, productDto)
 }
+
+func GetProductsBYpalabra(c *gin.Context) {
+	var palabraClave dto.PalabraClaveDto
+	err := c.BindJSON(&palabraClave)
+
+	if err != nil {
+		log.Error(err.Error())
+		c.JSON(http.StatusBadRequest, err.Error())
+		return
+	}
+
+	productsDto, er := service.ProductService.GetProductsByPalabrasClaves(palabraClave.Clave)
+
+	if er != nil {
+		c.JSON(er.Status(), er)
+		c.JSON(http.StatusBadRequest, err.Error())
+		return
+	}
+	c.JSON(http.StatusCreated, productsDto)
+
+}

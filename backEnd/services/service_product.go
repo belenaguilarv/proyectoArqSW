@@ -5,6 +5,8 @@ import (
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/dto"
 	e "github.com/belenaguilarv/proyectoArqSW/backEnd/errors"
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/model"
+
+	"strings"
 )
 
 type productService struct{}
@@ -12,6 +14,7 @@ type productService struct{}
 type productServiceInterface interface {
 	GetProductById(id int) (dto.ProductDto, e.ApiError)
 	GetProducts() (dto.ProductsDto, e.ApiError)
+	GetProductsByPalabrasClaves(clave string) (dto.ProductsDto, e.ApiError)
 }
 
 var (
@@ -58,6 +61,30 @@ func (s *productService) GetProducts() (dto.ProductsDto, e.ApiError) {
 		productDto.CategoryId = product.CategoryId
 
 		productsDto = append(productsDto, productDto)
+	}
+	return productsDto, nil
+}
+
+func (s *productService) GetProductsByPalabrasClaves(clave string) (dto.ProductsDto, e.ApiError) {
+	var products model.Products = productCliente.GetProducts()
+	var productsDto dto.ProductsDto
+
+	for _, product := range products {
+
+		if strings.Contains(product.Name, clave) {
+
+			var productDto dto.ProductDto
+
+			productDto.Id = product.Id
+			productDto.Name = product.Name
+			productDto.Description = product.Description
+			productDto.Picture = product.Picture
+			productDto.Price = product.Price
+			productDto.Stock = product.Stock
+			productDto.CategoryId = product.CategoryId
+
+			productsDto = append(productsDto, productDto)
+		}
 	}
 	return productsDto, nil
 }
