@@ -6,14 +6,14 @@ export const Header = () => {
   
   return (
     <header>
-      <Link to="/">
+      <Link to="/inicio">
       <div className="logo">
         <img src={Nike} alt="" width="150" />
       </div>
       </Link>
       <ul>
         <li>
-          <Link to="/">INICIO</Link>
+          <Link to="/inicio">INICIO</Link>
         </li>
         <li>
           <Link to="/productos">PRODUCTOS</Link>

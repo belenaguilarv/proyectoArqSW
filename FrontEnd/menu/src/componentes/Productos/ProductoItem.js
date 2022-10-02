@@ -1,8 +1,8 @@
 import React, {useContext} from "react";
 import IMG from "../../images/img01.jpg";
 
-export const ProductoItem = ({title, image, category, price, id}) => {
 
+export const ProductoItem = ({title, image, category, price, id}) => {
   return (
     <div className="producto">
     <a href="#">

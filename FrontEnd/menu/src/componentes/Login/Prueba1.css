@@ -1,3 +1,5 @@
+
+/*
 .app {
   display: flex;
   align-items: center;
@@ -97,4 +99,83 @@ form{
 .input-container:hover{
   background-color: transparent;
   border-color: white;
+}
+
+*/
+
+.app {
+  /*font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+  height: 80vh;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  background-color: rgba(150, 175, 243, 0.19);
+  */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  height: 100vh;
+  font-family:'Prompt', sans-serif;
+}
+
+input[type="text"],
+input[type="password"] {
+  height: 2.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin-top: 1rem;
+  text-align: center;
+}
+
+input[type="submit"] {
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  background: #01d28e;
+  border: 1px solid #01d28e;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+input[type="submit"]:hover {
+  background: #6cc6f0;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.login-form {
+  background-color: white;
+  padding: 8rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.login {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px;
+}
+
+.input-container label{
+  text-align: center;
+  padding: 1ch;
 }
