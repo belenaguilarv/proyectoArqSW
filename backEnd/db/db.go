@@ -19,7 +19,7 @@ var (
 
 func init() {
 
-	dsn := "root:@tcp(127.0.0.1:3306)/nodelogin?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "root:secret@tcp(127.0.0.1:33060)/nodelogin?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if err != nil {
@@ -36,10 +36,11 @@ func init() {
 }
 func StartDbEngine() {
 
+	db.AutoMigrate(&model.Product{})
 	db.AutoMigrate(&model.User{}) // crea una tabla en plural de "user" o la usa si esta creada
 	db.AutoMigrate(&model.Order{})
+	db.AutoMigrate(&model.Category{})
 	db.AutoMigrate(&model.OrderDetail{})
-	db.AutoMigrate(&model.Product{})
 
 	log.Info("Finishing Migration Database Tables")
 }

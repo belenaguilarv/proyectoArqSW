@@ -36,6 +36,7 @@ func NewUser(user model.User) model.User {
 
 	if result.Error != nil {
 		log.Error("ERROR al crear el usuario")
+		return user
 	}
 	log.Debug("User Created: ", user.Id)
 	return user

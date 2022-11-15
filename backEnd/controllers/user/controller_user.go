@@ -91,7 +91,7 @@ func NewUser(c *gin.Context) {
 
 	userDto, errr := service.UserService.NewUser(userDto)
 
-	if err != nil {
+	if errr != nil {
 		c.JSON(errr.Status(), errr)
 		log.Error(errr.Error())
 		return

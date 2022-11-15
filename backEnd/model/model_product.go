@@ -6,7 +6,7 @@ type Product struct {
 	Description string  `gorm:"type:varchar(350); not null"`
 	Picture     string  `gorm:"type:varchar(350); not null"`
 	Price       float32 `gorm:"type:float; not null"`
-	Stock       int     `gorm:"type:smaillint; unsigned; not null"`
+	Stock       int     `gorm:"type:int; unsigned; not null"`
 	CategoryId  int     `gorm:"type:int; unsigned; not null"`
 }
 
