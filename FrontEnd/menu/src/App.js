@@ -11,7 +11,7 @@ function App() {
     <DataProvider>
       <div className="App">
       <Router>
-        <Header/>
+  
       <Paginas/>
       </Router>
     </div>
