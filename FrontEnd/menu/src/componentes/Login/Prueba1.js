@@ -1,10 +1,10 @@
 
 import React,{ useState} from "react";
 import "./Prueba1.css";
-//import Cookies from "universal-cookie";
-//import {CookieUser} from "../cookies/cookieUser"
+import Cookies from "universal-cookie";
+import {CookieUser} from "../cookies/cookiesUser"
 import swal from "sweetalert2";
-//const Cookie =new Cookies();
+const Cookie = new Cookies();
 
 export default function GetUserByLogin(){
   
@@ -43,14 +43,14 @@ export default function GetUserByLogin(){
           swal.fire({icon: 'success'}
           ).then((result) => {
             if (result.isConfirmed) {
-              window.location.replace("/inicio")
+              window.location.replace("/productos")
               return response.json()
             }})
         }
         return response.json()})
-      /*  .then(response => {
+        .then(response => {
            Cookie.set("username", response.id_user + "," + response.token, {path: "/"})
-    })*/
+    })
    
     };
    
@@ -77,16 +77,7 @@ export default function GetUserByLogin(){
       </form>
     </div>
   );
-/*
-  return (
-    <div className="app">
-      <div className="login-form">
-        <div className="title">THE HANDBAG STORE {userData.id}</div>
-          {isUser? <div>Usuario: {userData.id} </div> : renderForm}
-      </div>
-    </div>
-  );
-*/
+
 return(
   <div className="app">
     <div className="login-form">
