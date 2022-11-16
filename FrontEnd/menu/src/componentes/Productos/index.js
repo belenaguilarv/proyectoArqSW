@@ -1,34 +1,42 @@
-import React, {useContext} from "react";
-
-import { DataContext } from "../../context/Dataprovider"
-import { ProductoItem } from "./ProductoItem"
+import React, { useContext, useEffect, useState} from "react";
+import { ProductoItem } from "./ProductoItem";
+import { ProductosBuscador } from "./buscador";
 
 
 export const ProductosLista = () => {
 
-        const value = useContext(DataContext)
-        const [productos] = value.productos;
-
-        console.log(productos)
-
-    return (
+    const [productos,setProductos] = useState([]);
+    const fetchApi = async()=>{
+    const response = await fetch('http://localhost:8090/product')
+    .then((response) => response.json());
+    setProductos(response);
+    };
+    useEffect(()=>{
+    fetchApi();
+    },[])
+    return(
         <>
-        <h1 className="title">PRODUCTOS</h1>
+        <ProductosBuscador/>
+        
+        <h2>Nuestro Productos</h2>
         <div className="productos">
-           {
-               productos.map(producto =>(
-                < ProductoItem 
-                key={producto.id}
-                title={producto.title}
-                image={producto.image}
-                category={producto.category}
-                price={producto.price}
-                id={producto.id}
-                
-                />
-               ))
-           }
+            {
+                productos.map(producto =>(
+                  <ProductoItem 
+                  key={producto.id}
+                  product_id={producto.product_id}
+                  name={producto.name}
+                  product_unit_price={producto.product_unit_price}
+                  Category_id={producto.Category_id}
+                  stock={producto.stock}
+                  picture_url={producto.picture_url}
+                  description={producto.description}
+                  /> 
+                ))
+            }
+            
         </div>
         </>
     )
 }
+
