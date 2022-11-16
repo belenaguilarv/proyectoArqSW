@@ -181,19 +181,6 @@ header ul li a{
   color: white;
 }
 
-/*-----------------INICIO-------------------*/
-.inicio{
-  width: 100%;
-  margin: 0 auto;
-  padding-top: 9rem ;
-}
-.inicio h1{
-  font-size: 1.5rem;
-  color: white;
-}
-.inicio img{
-  width: 100%;
-}
 /*-----------------PRODUCTO-------------------*/
 
 h2{
@@ -301,4 +288,73 @@ h2{
   margin:1rem auto;
   flex-direction:row;
   box-shadow:5px 5px 0 rgb(22, 66, 160);
+}
+/*---INICIO---*/
+.inicio{
+  width: 100%;
+  margin: 0 auto;
+  
+}
+.inicio h1{
+  font-size: 2.5rem;
+  color: blue;
+  text-align: center;
+  padding: 1rem 0 1rem 0;
+}
+.inicio img{
+  width: 100%;
+}
+/*---CATEGORIAS---*/
+.categorias {
+  padding: 6rem 10rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(10rem, 1fr));
+  gap: 3rem 5rem;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.category{
+  display: flex;
+  font-size: 1.2rem;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 6px solid transparent;
+  font-family: sans-serif;
+  text-decoration: none;
+  color: #000000;
+  border-style: outset;
+  position: relative;
+  transition: all .35s;
+  cursor: pointer;
+
+}
+.category:hover {
+  color: #fff;
+}
+
+.category:hover:after {
+  width: 100%;
+}
+.category span {
+  position: relative;
+  z-index: 2;
+}
+
+.category:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #0077ff;
+  color: white;
+  transition: all .35s;
+}
+
+.category:hover:after {
+  width: 100%;
 }

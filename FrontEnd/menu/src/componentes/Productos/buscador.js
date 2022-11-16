@@ -6,6 +6,7 @@ export const ProductosBuscador = ()=>{
 
     const [productos,setProductos] = useState([]);
     const [busqueda, setBusqueda]= useState("");
+    
     const fetchApi = async()=>{
       
         const response = await fetch('http://localhost:8090/productXpalabraClave/'+busqueda)

@@ -43,7 +43,7 @@ export default function GetUserByLogin(){
           swal.fire({icon: 'success'}
           ).then((result) => {
             if (result.isConfirmed) {
-              window.location.replace("/productos")
+              window.location.replace("/inicio")
               return response.json()
             }})
         }
