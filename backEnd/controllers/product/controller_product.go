@@ -72,3 +72,15 @@ func GetProductsByCategory(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, productsDto)
 }
+
+func GetCategories(c *gin.Context) {
+	var categories []dto.CategoryDto
+	categories, err := service.ProductService.GetCategories()
+
+	if err != nil {
+		c.JSON(err.Status(), err)
+		return
+	}
+
+	c.JSON(http.StatusOK, categories)
+}

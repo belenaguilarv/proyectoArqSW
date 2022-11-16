@@ -21,3 +21,10 @@ func GetProducts() model.Products {
 	log.Debug("Products: ", products)
 	return products
 }
+
+func GetCategories() []model.Category {
+	var categories []model.Category
+	Db.Find(&categories)
+	log.Debug("Categories: ", categories)
+	return categories
+}

@@ -16,6 +16,7 @@ type productServiceInterface interface {
 	GetProducts() (dto.ProductsDto, e.ApiError)
 	GetProductsByPalabrasClaves(clave string) (dto.ProductsDto, e.ApiError)
 	GetProductsByCategory(category int) (dto.ProductsDto, e.ApiError)
+	GetCategories() ([]dto.CategoryDto, e.ApiError)
 }
 
 var (
@@ -113,4 +114,20 @@ func (s *productService) GetProductsByCategory(category int) (dto.ProductsDto, e
 		}
 	}
 	return productsDto, nil
+}
+
+func (s *productService) GetCategories() ([]dto.CategoryDto, e.ApiError) {
+	var categories []model.Category = productCliente.GetCategories()
+	var categoriesDTO []dto.CategoryDto
+
+	for _, category := range categories {
+
+		var categoryDTO dto.CategoryDto
+
+		categoryDTO.Id = category.Id
+		categoryDTO.Name = category.Name
+
+		categoriesDTO = append(categoriesDTO, categoryDTO)
+	}
+	return categoriesDTO, nil
 }
