@@ -27,8 +27,6 @@ func GetProductById(c *gin.Context) {
 	log.Debug("Product id to load: " + c.Param("id"))
 
 	id, _ := strconv.Atoi(c.Param("id"))
-	var productDto dto.ProductDto
-
 	productDto, err := service.ProductService.GetProductById(id)
 
 	if err != nil {
@@ -58,4 +56,19 @@ func GetProductsBYpalabra(c *gin.Context) {
 	}
 	c.JSON(http.StatusCreated, productsDto)
 
+}
+
+func GetProductsByCategory(c *gin.Context) {
+	log.Debug("category id to load: " + c.Param("id"))
+
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	productsDto, err := service.ProductService.GetProductsByCategory(id)
+
+	if err != nil {
+		c.JSON(err.Status(), err)
+		log.Error(err.Error())
+		return
+	}
+	c.JSON(http.StatusOK, productsDto)
 }

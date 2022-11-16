@@ -13,9 +13,10 @@ import (
 
 func mapUrls() {
 	// Products Mapping
-	router.GET("/product/:id", productController.GetProductById)                         // TODO OK
-	router.GET("/product", productController.GetProducts)                                // TODO OK
-	router.GET("/productXpalabraClave/:palabra", productController.GetProductsBYpalabra) //MANDAS LA CLAVE X JSON (BODY)
+	router.GET("/product/:id", productController.GetProductById)                   // TODO OK
+	router.GET("/product", productController.GetProducts)                          // TODO OK
+	router.GET("/productXpalabraClave", productController.GetProductsBYpalabra)    //MANDAS LA CLAVE X JSON (BODY)
+	router.GET("/productsByCategory/:id", productController.GetProductsByCategory) // OK
 
 	// Users Mapping
 	router.GET("/user/:id", userController.GetUserById) // TODO OK

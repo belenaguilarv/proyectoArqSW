@@ -15,6 +15,7 @@ type productServiceInterface interface {
 	GetProductById(id int) (dto.ProductDto, e.ApiError)
 	GetProducts() (dto.ProductsDto, e.ApiError)
 	GetProductsByPalabrasClaves(clave string) (dto.ProductsDto, e.ApiError)
+	GetProductsByCategory(category int) (dto.ProductsDto, e.ApiError)
 }
 
 var (
@@ -68,10 +69,35 @@ func (s *productService) GetProducts() (dto.ProductsDto, e.ApiError) {
 func (s *productService) GetProductsByPalabrasClaves(clave string) (dto.ProductsDto, e.ApiError) {
 	var products model.Products = productCliente.GetProducts()
 	var productsDto dto.ProductsDto
+	var CLAVE string = strings.ToUpper(clave)
 
 	for _, product := range products {
 
-		if strings.Contains(product.Name, clave) {
+		if strings.Contains(product.Name, clave) || strings.Contains(product.Name, CLAVE) {
+
+			var productDto dto.ProductDto
+
+			productDto.Id = product.Id
+			productDto.Name = product.Name
+			productDto.Description = product.Description
+			productDto.Picture = product.Picture
+			productDto.Price = product.Price
+			productDto.Stock = product.Stock
+			productDto.CategoryId = product.CategoryId
+
+			productsDto = append(productsDto, productDto)
+		}
+	}
+	return productsDto, nil
+}
+
+func (s *productService) GetProductsByCategory(category int) (dto.ProductsDto, e.ApiError) {
+	var products model.Products = productCliente.GetProducts()
+	var productsDto dto.ProductsDto
+
+	for _, product := range products {
+
+		if category == product.CategoryId {
 
 			var productDto dto.ProductDto
 
