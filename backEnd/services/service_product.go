@@ -73,8 +73,9 @@ func (s *productService) GetProductsByPalabrasClaves(clave string) (dto.Products
 	var CLAVE string = strings.ToUpper(clave)
 
 	for _, product := range products {
-
-		if strings.Contains(product.Name, clave) || strings.Contains(product.Name, CLAVE) {
+		var aux string = strings.ToUpper(product.Name)
+		var aux2 string = strings.ToLower(product.Description)
+		if strings.Contains(aux, CLAVE) || strings.Contains(aux2, clave) {
 
 			var productDto dto.ProductDto
 
