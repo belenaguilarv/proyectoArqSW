@@ -38,20 +38,15 @@ func GetProductById(c *gin.Context) {
 }
 
 func GetProductsBYpalabra(c *gin.Context) {
-	var palabraClave dto.PalabraClaveDto
-	err := c.BindJSON(&palabraClave)
 
-	if err != nil {
-		log.Error(err.Error())
-		c.JSON(http.StatusBadRequest, err.Error())
-		return
-	}
+	log.Debug("Product id to load: " + c.Param("clave"))
+	clave := c.Param("clave")
 
-	productsDto, er := service.ProductService.GetProductsByPalabrasClaves(palabraClave.Clave)
+	productsDto, er := service.ProductService.GetProductsByPalabrasClaves(clave)
 
 	if er != nil {
 		c.JSON(er.Status(), er)
-		c.JSON(http.StatusBadRequest, err.Error())
+		c.JSON(http.StatusBadRequest, er.Error())
 		return
 	}
 	c.JSON(http.StatusCreated, productsDto)
