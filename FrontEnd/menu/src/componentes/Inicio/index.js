@@ -1,6 +1,7 @@
 import React, {useEffect, useState } from "react";
 import { ProductoItem } from "../Productos/ProductoItem";
 import swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 
 async function GetProductByIdCategory(Id) {
@@ -65,6 +66,13 @@ const Render =(
                   </button>
                 ))
             }
+        </div>
+        <div className="todos">
+        <ul>
+        <li>
+          <Link to="/productos"><h1>Todos los Productos</h1></Link>
+        </li>
+        </ul>
         </div>
           <div>
               {Render}

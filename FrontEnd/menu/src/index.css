@@ -22,50 +22,6 @@ code {
   padding: 0 15px;
   box-sizing: border-box
 }
-/* ----------------- HEADER -------------------*/
-header{
-  width: 97%;
-  min-height: 100px;
-  max-width:1530px;
-  overflow: hidden;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-  position: fixed;
-  box-sizing: border-box ;
-  background-color: #88506e;
-  box-shadow: 0 10px 10px rgb(124, 105, 105);
-}
-a{      
-  color: black;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-size:x-large;
-  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
-}
-a:hover{
-  color:#3e162c;
-}
-.menu{
-  display: none;
-}
-li{
-  list-style: none;
-}
-
-header ul{
-  display: flex;
-  padding: 0;
-  margin: 0;
-}
-header ul li{
-  padding: 0 5rem;
-}
-header ul li a{
-  font-weight: bold;
-}
 
 .cart{
   position: relative;
@@ -91,94 +47,6 @@ header ul li a{
   font-weight: 700;
   border-radius: 50%;
   background-color: crimson;
-}
-/*----------- PRODUCTOS ------------*/
-.title{
-  font-size: 2.4rem;
-  padding: 10rem 0 0 0;
-  color: #88506e;
-  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-.productos{
-  padding: 5rem 3rem;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
-  gap: 3rem 1rem;
-  box-sizing: border-box ;
-} 
-.producto{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 1px 10px 10px 2px rgba(0, 0, 0, 0.1);
-  border: 6px solid transparent;
-  cursor: pointer;
-  border-radius: 5px;
-}
-.producto:hover{
-  border: 6px solid #08a05c57;
-  ;
-}
-.producto__img img{
-  width: 310px;
-}
-.producto__footer{
-  padding: 1rem;
-}
-.producto__footer h1{
-  font-weight: 600;
-  font-size: 1.5rem;
-  color: #1a202c;
-  font-family: Helvetica, sans-serif
-  ;
-}
-.producto__footer p{
-  font-weight: 700;
-  color: rgba(0, 0, 0, 0.555);
-  text-transform: uppercase;
-  font-size: 18px;
-}
-.producto__footer .price{
-  font-size: 2rem;
-  color: #1a202c;
-}
-.productos .buttom{
-  width: 100%;
-  height: 45px;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 1rem 2rem;
-}
-.buttom .btn{
-  border: none;
-  outline: 0;
-  cursor: pointer;
-  border-radius: 5px;
-}
-.buttom button{
-  background-color: #88506e;
-  max-width: 250px;
-  width: 100%;
-  
-  font-size: 1.5rem;
-  color: white;
-  font-weight: 600;
-}
-.buttom div{
-  background-color:#88506e;
-  display: grid;
-  align-items: center;
-  text-align: center;
-  margin-left: -2rem;
-  border-radius: 5px;
-}
-.buttom div a{
-  color: white;
-  font-weight: 700;
-}
-.buttom div a:hover{
-  color: white;
 }
 
 /*-----------------PRODUCTO-------------------*/
@@ -357,4 +225,21 @@ h2{
 
 .category:hover:after {
   width: 100%;
+}
+
+.todos h1{
+  box-sizing: border-box;
+  display: flex;
+  font-size: 1.2rem;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 6px solid transparent;
+  font-family: sans-serif;
+  text-decoration: none;
+  color: #88506e;
+  border-style: outset;
+  position: relative;
+  transition: all .35s;
+  cursor: pointer;
 }
