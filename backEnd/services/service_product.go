@@ -70,12 +70,12 @@ func (s *productService) GetProducts() (dto.ProductsDto, e.ApiError) {
 func (s *productService) GetProductsByPalabrasClaves(clave string) (dto.ProductsDto, e.ApiError) {
 	var products model.Products = productCliente.GetProducts()
 	var productsDto dto.ProductsDto
-	var CLAVE string = strings.ToUpper(clave)
-
+	var control int = 0
 	for _, product := range products {
-		var aux string = strings.ToUpper(product.Name)
+		var aux string = strings.ToLower(product.Name)
 		var aux2 string = strings.ToLower(product.Description)
-		if strings.Contains(aux, CLAVE) || strings.Contains(aux2, clave) {
+		if strings.Contains(aux, clave) || strings.Contains(aux2, clave) {
+			control = 1
 
 			var productDto dto.ProductDto
 
@@ -89,7 +89,12 @@ func (s *productService) GetProductsByPalabrasClaves(clave string) (dto.Products
 
 			productsDto = append(productsDto, productDto)
 		}
+
 	}
+	if control == 0 {
+		return productsDto, e.NewBadRequestApiError("Error")
+	}
+
 	return productsDto, nil
 }
 
