@@ -18,6 +18,7 @@ func GetProducts(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(err.Status(), err)
+		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
 
@@ -31,6 +32,7 @@ func GetProductById(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(err.Status(), err)
+		c.JSON(http.StatusBadRequest, err.Error())
 		log.Error(err.Error())
 		return
 	}
@@ -49,7 +51,7 @@ func GetProductsBYpalabra(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, er.Error())
 		return
 	}
-	c.JSON(http.StatusCreated, productsDto)
+	c.JSON(http.StatusOK, productsDto)
 
 }
 
@@ -62,6 +64,7 @@ func GetProductsByCategory(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(err.Status(), err)
+		c.JSON(http.StatusBadRequest, err.Error())
 		log.Error(err.Error())
 		return
 	}
@@ -74,6 +77,7 @@ func GetCategories(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(err.Status(), err)
+		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
 

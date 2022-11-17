@@ -22,6 +22,7 @@ func GetOrderById(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(err.Status(), err)
+		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
 	c.JSON(http.StatusOK, orderDto)
@@ -33,6 +34,7 @@ func GetOrders(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(err.Status(), err)
+		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
 
@@ -45,6 +47,7 @@ func GetOrdersWithDetails(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(err.Status(), err)
+		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
 
@@ -60,6 +63,7 @@ func GetOrderWithDetailsById(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(err.Status(), err)
+		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
 
@@ -93,8 +97,10 @@ func InsertOrder(c *gin.Context) {
 	}
 
 	orderDto, er := service.OrderService.InsertOrder(orderDto)
+
 	if er != nil {
 		c.JSON(er.Status(), er)
+		c.JSON(http.StatusBadRequest, er.Error())
 		return
 	}
 	c.JSON(http.StatusCreated, orderDto)
@@ -109,6 +115,7 @@ func DeleteOrder(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(err.Status(), err)
+		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
 	c.JSON(http.StatusOK, orderwithdetailsDto)
