@@ -43,7 +43,7 @@ export default function GetUserByLogin(){
           swal.fire({icon: 'success'}
           ).then((result) => {
             if (result.isConfirmed) {
-              window.location.replace("/productos")
+              window.location.replace("/inicio")
               return response.json()
             }})
         }
@@ -84,15 +84,15 @@ return(
     <form onSubmit={handleSubmit} >
     <ul className="ul">
     
-    <h1 className="login">LOGIN</h1>
+    <h1 className="login">INGRESO</h1>
     
       <li>
-    <input id="username" type={"text"} placeholder="username" onChange={onChangeUser} value ={username} required></input>
+    <input id="username" type={"text"} placeholder="Nombre de usuario" onChange={onChangeUser} value ={username} required></input>
       </li>
     <li>
-    <input id="password" type={"password"} placeholder="password" onChange={onChangePas} value={password} required></input>
+    <input id="password" type={"password"} placeholder="Contraseña" onChange={onChangePas} value={password} required></input>
     </li>
-    <input type="submit" value="Log In"></input>
+    <input type="submit" value="Ingresar"></input>
     </ul>
     
     </form>

@@ -1,0 +1,92 @@
+import React, {useState, useEffect} from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Cookies from "universal-cookie";
+import { OrdenItem } from "./OrdenItem";
+import swal from "sweetalert2";
+
+
+const Cookie = new Cookies();
+
+async function GetOrderById(id) {
+    return fetch('http://localhost:8090/order/:id' +id, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(data => data.json())
+   }
+export const GetOrders = ()=>{
+    
+    let cookie = Cookie.get("username")
+    let user_id;
+    let token;
+    if(cookie!=undefined){
+    let array = cookie.split(",")
+     user_id = array[0]
+     token=array[1]
+    }
+    else{
+         user_id = "undefined"
+    }
+    const [ordenes,setOrdenes]=useState([]);
+        async function Handle (id) {
+            const response = await GetOrderById(id)
+            if (response.status == 400) {
+                swal.fire({
+                    text: "No ha realizado ninguna orden",
+                    icon: 'warning'
+                   
+                }).then((result)=>{
+                    if(result.isConfirmed){
+                        window.location.replace("/")
+                    }
+                })
+                
+             }else{
+                setOrdenes(response)
+             }
+            
+            };
+    useEffect(()=>{
+        if(user_id!="undefined"){
+        Handle(token);
+        }
+        else{
+            swal.fire({
+                text: "Debe Loguearse",
+                icon: 'warning'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.replace("/login");
+                }})
+            
+        }
+        },[])
+        return(
+            <>
+            <h1 className="title">MIS COMPRAS</h1>
+            <div>
+                <div className="ordenes">
+            
+            {
+                ordenes.map(orden =>(
+                    <div>
+                        <OrdenItem key={orden.order_id}
+                    order_id = {orden.order_id}
+                    total_price = {orden.total_price}
+                    fecha = {orden.fecha}
+                    user_id = {orden.user_id}
+                    OrdersDetalle = {orden.OrdersDetalle}
+                    /> 
+                    </div>
+                )
+                )
+            }
+            </div>
+            </div>
+            
+            </>      
+        )
+    }
+   
