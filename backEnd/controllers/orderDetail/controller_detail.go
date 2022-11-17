@@ -22,6 +22,7 @@ func GetOrderDetailById(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(err.Status(), err)
+		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
 	c.JSON(http.StatusOK, orderDetailDto)
@@ -32,6 +33,7 @@ func GetOrderDetails(c *gin.Context) {
 	orderDetailsDto, err := service.OrderDetailService.GetOrderDetails() //delega
 
 	if err != nil {
+		c.JSON(http.StatusBadRequest, err.Error())
 		c.JSON(err.Status(), err)
 		return
 	}

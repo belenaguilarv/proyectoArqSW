@@ -26,6 +26,7 @@ func GetUserById(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(err.Status(), err)
+		c.JSON(http.StatusBadRequest, err.Error())
 		log.Error(err.Error())
 		return
 	}
@@ -38,6 +39,7 @@ func GetUsers(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(err.Status(), err)
+		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
 
@@ -47,6 +49,7 @@ func GetUsers(c *gin.Context) {
 func LoginUser(c *gin.Context) {
 	var loginDto dto.LoginDto
 	err := c.BindJSON(&loginDto)
+
 	if err != nil {
 		log.Error(err.Error())
 		c.JSON(http.StatusBadRequest, err.Error())
@@ -57,6 +60,7 @@ func LoginUser(c *gin.Context) {
 
 	if er != nil {
 		c.JSON(er.Status(), er)
+		c.JSON(http.StatusBadRequest, er.Error())
 		return
 	}
 
