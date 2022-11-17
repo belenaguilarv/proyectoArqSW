@@ -43,7 +43,7 @@ export const ProductosBuscador = ()=>{
     
     return(
         <>
-        <h1 className="title">PRODUCTOS</h1>
+        <h1 className="title"></h1>
         <div className="containerInput" >
         <input
            
