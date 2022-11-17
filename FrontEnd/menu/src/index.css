@@ -2,13 +2,14 @@
   margin: 0;
   padding: 0;
   font-family: 'Saira Condensed', sans-serif;
+  font-weight: lighter;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Saira Condensed', sans-serif;
 }
 
 .App{
@@ -20,7 +21,7 @@ code {
   padding: 0 15px;
   box-sizing: border-box;
   background: linear-gradient(90deg, rgba(20,22,45,1) 0%, rgba(75,29,65,1) 35%, rgba(150,83,92,1) 100%);
-
+  text-transform: uppercase;
 }
 
 .cart{
@@ -47,6 +48,7 @@ code {
   font-weight: 700;
   border-radius: 50%;
   background-color: crimson;
+  text-transform: uppercase;
 }
 
 /*-----------------PRODUCTO-------------------*/
@@ -56,6 +58,7 @@ h2{
   padding: 1rem 0 1rem 0;
   color: rgb(255, 255, 255);
   text-align: center;
+  text-transform: uppercase;
 }
 .productos{
   padding: 2rem 1rem;
@@ -89,18 +92,21 @@ h2{
 .producto_footer h1{
   font-size: 1.2rem;
   color: #88506e;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Saira Condensed', sans-serif;
   font-weight: 200;
+  text-transform: uppercase;
 }
 .producto_footer p{
   font-weight: 500;
   color: rgba(0, 0, 0, 0.55);
   text-transform: uppercase;
   font-size: 18px;
+  text-transform: uppercase;
 }
 .producto_footer .price{
   font-size: 2rem;
   color: rgb(0, 0, 0);
+  text-transform: uppercase;
 }
 .producto .buttom{
   width: 100%;
@@ -118,12 +124,12 @@ h2{
   border-radius: 5px;
 }
 .buttom button{
-  background-color: rgb(0, 17, 255);
   max-width: 250px;
   width: 100%;
   font-size: 1.5rem;
   color: rgb(255, 255, 255);
   font-weight: 600;
+  text-transform: uppercase;
 }
 .buttom p{
   background-color: rgb(255, 0, 0);
@@ -132,9 +138,9 @@ h2{
   font-size: 1rem;
   color: rgb(255, 255, 255);
   font-weight: 600;
+  text-transform: uppercase;
 }
 .buttom div{
-  background-color: rgb(76, 0, 255);
   display: grid;
   align-items: center;
   text-align: center;
@@ -144,6 +150,7 @@ h2{
 .buttom div a{
   color: white;
   font-weight: 700;
+  text-transform: uppercase;
 }
 .buttom div a:hover{
   color: white;
@@ -155,7 +162,6 @@ h2{
   position:realtive;
   margin:1rem auto;
   flex-direction:row;
-  box-shadow:5px 5px 0 rgb(22, 66, 160);
 }
 /*---INICIO---*/
 .inicio{
@@ -165,9 +171,9 @@ h2{
 }
 .inicio h1{
   font-size: 2.5rem;
-  color: blue;
   text-align: center;
   padding: 1rem 0 1rem 0;
+  text-transform: uppercase;
 }
 .inicio img{
   width: 100%;
@@ -182,6 +188,7 @@ h2{
   box-sizing: border-box;
   align-items: center;
   font-weight: 300;
+  text-transform: uppercase;
 }
 
 .category{
@@ -191,17 +198,19 @@ h2{
   align-items: center;
   text-align: center;
   border: 6px solid transparent;
-  font-family: sans-serif;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
   text-decoration: none;
   color: #000000;
   border-style: outset;
   position: relative;
   transition: all .35s;
   cursor: pointer;
+  text-transform: uppercase;
 
 }
 .category:hover {
   color: #fff;
+  font-weight: bolder;
 }
 
 .category:hover:after {
@@ -221,7 +230,6 @@ h2{
   left: 0;
   width: 0;
   height: 100%;
-  background: #0077ff;
   color: white;
   transition: all .35s;
 }
@@ -238,11 +246,12 @@ h2{
   align-items: center;
   text-align: center;
   border: 6px solid transparent;
-  font-family: sans-serif;
+  font-family: 'Saira Condensed', sans-serif;
   text-decoration: none;
   color: #88506e;
   border-style: outset;
   position: relative;
   transition: all .35s;
   cursor: pointer;
+  text-transform: uppercase;
 }

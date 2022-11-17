@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { ProductoItem } from "./ProductoItem";
 import swal from "sweetalert2";
+import "./buscador.css";
 
 export const ProductosBuscador = ()=>{
 
@@ -42,17 +43,18 @@ export const ProductosBuscador = ()=>{
     
     return(
         <>
-        <h1 className="title"> PRODUCTOS</h1>
+        <h1 className="title">PRODUCTOS</h1>
         <div className="containerInput" >
         <input
            
-          className="form-control inputBuscar"
+          className="form-controlinputBuscar"
           value={busqueda}
-          placeholder="Buscador de Productos"
+          placeholder="Ingresar Producto"
           onChange={handleChange}
          
         />
         <input
+        className="botonBuscar"
         value = "Buscar"
          type = "button"
         onClick = {handleSubmit}
