@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState} from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 import Cookies from "universal-cookie";
 import swal from "sweetalert2";
@@ -18,28 +17,28 @@ function setUser (){
 }
 function vaciarCarrito(){
    
-    document.cookie = "cart"+user_id+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "cart"+id_user+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 export const CrearOrden = ()=>{
   
 
     let cookie = Cookie.get("username")
-    let user_id = parseInt(cookie.split(",")[0]);
-    let orderDetail ={'product_id':0,'quantity':0}
-    let ordersDetail = [];
+    let id_user = parseInt(cookie.split(",")[0]);
+    let OrderDetail ={'product_id':0,'quantity':0}
+    let details = [];
 
-    let a = Cookie.get("cart"+user_id).split(";")
+    let a = Cookie.get("cart"+id_user).split(";")
  
 
     for (let i = 0; i < a.length; i++){
       let item = a[i];
       if(item != ""){
         let array = item.split(",")
-        orderDetail ={'product_id':0,'quantity':0}
-         orderDetail.product_id = parseInt(array[0])
-         orderDetail.quantity =parseInt(array[1])
+        OrderDetail ={'product_id':0,'quantity':0}
+         OrderDetail.product_id = parseInt(array[0])
+         OrderDetail.quantity =parseInt(array[1])
          
-        ordersDetail.push(orderDetail)
+        details.push(OrderDetail)
         
       }
     }
@@ -55,7 +54,7 @@ export const CrearOrden = ()=>{
             return response.json()
           }}) 
        }else{
-          swal.fire({icon: 'success', text:"Compra realizada con éxito, puede ver su historial de compras en mis compras"}
+          swal.fire({icon: 'success', text:"Compra realizada con éxito"}
           ).then((result) => {
             if (result.isConfirmed) {
               window.location.replace("/")
@@ -70,8 +69,8 @@ export const CrearOrden = ()=>{
         headers: {'Content-Type': 'application/json'},
         
         body: JSON.stringify({
-             user_id: user_id,
-             OrdersDetalle:ordersDetail
+             id_user: user_id,
+             details: details
     })
     };
      

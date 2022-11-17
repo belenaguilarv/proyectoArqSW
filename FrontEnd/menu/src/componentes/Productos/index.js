@@ -17,6 +17,11 @@ export const ProductosLista = () => {
     return(
         <>
         <ProductosBuscador/>
+
+        <div className="cart">
+        <box-icon name="cart"></box-icon>
+        </div>
+        
         
         <h2>NUESTROS PRODUCTOS</h2>
         <div className="productos">

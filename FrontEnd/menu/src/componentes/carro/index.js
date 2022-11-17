@@ -1,13 +1,13 @@
 import React, { useState, useEffect, List, Checkbox} from "react";
-import "./carrito.css"
+import "./carro.css"
 import Cookies from "universal-cookie";
-import { CrearOrden } from "../orden/crear_orden";
+import { CrearOrden } from "../orden/create_order";
 const Cookie = new Cookies();
 
 const idUsuario = serIdUsuario()
 
 function serIdUsuario (){
-  let cookieUser = Cookie.get("user")
+  let cookieUser = Cookie.get("username")
 
   if(cookieUser!=undefined){
   let array = cookieUser.split(",")
@@ -103,7 +103,7 @@ function showProducts(products){
   return products.map((product) =>
 
    <div className="producto">
-   <div obj={product} key={product.id} >
+   <div obj={product} key={product.product_id} >
    <div>
         <a href="#">
         <div className="producto_img">
@@ -113,15 +113,15 @@ function showProducts(products){
         <div className="producto_footer">
             <h1>{product.name}</h1>
             <p>{product.description}</p>
-            <p className="price">U$S {product.base_price}</p>
+            <p className="price">U$S {product.product_unit_price}</p>
             <h3 className="Remove"> Remover </h3>
-       <select id={"removeSelect" + product.id}>
+       <select id={"removeSelect" + product.product_id}>
         {getOptions(product.quantity)}
        </select>
-       <button className="remove" onClick={() => remove(document.getElementById("removeSelect" + product.id).value, product.id)}>x</button>
+       <button className="remove" onClick={() => remove(document.getElementById("removeSelect" + product.product_id).value, product.product_id)}>x</button>
        <h1 className="amount"> Cantidad: </h1>
        <h1 className="number"> {product.quantity} </h1>
-       <h1 className="subtotal"> Subtotal: U$S {product.quantity * product.base_price} </h1>
+       <h1 className="subtotal"> Subtotal: U$S {product.quantity * product.product_unit_price} </h1>
         </div>
         </div>
         </div>
@@ -134,7 +134,7 @@ async function setCart(setter, setterTotal){
   await getCartProducts().then(response => {
     setter(response)
     response.forEach((item) => {
-      total += item.base_price * item.quantity;
+      total += item.product_unit_price * item.quantity;
     });
     setterTotal(total)
   })
