@@ -70,7 +70,7 @@ const Render =(
         <div className="todos">
         <ul>
         <li>
-          <Link to="/productos"><h1>TODOS LOS PRODUCTOS</h1></Link>
+          <Link to="/productos" ><h1>TODOS LOS PRODUCTOS</h1></Link>
         </li>
         </ul>
         </div>

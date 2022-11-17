@@ -18,7 +18,7 @@ export const ProductosLista = () => {
         <>
         <ProductosBuscador/>
         
-        <h2>Nuestro Productos</h2>
+        <h2>NUESTROS PRODUCTOS</h2>
         <div className="productos">
             {
                 productos.map(producto =>(
