@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { CategoryLista } from "./Inicio";
 import { ProductosLista } from "./Productos/index"
 import GetUserByLogin from "./Login/Prueba1";
+import Cart from "./carro";
 
 
 export const Paginas = () => {
@@ -12,6 +13,7 @@ export const Paginas = () => {
                 <Route path="/" exact element={<GetUserByLogin/>} />
                 <Route path="/inicio" exact element={<CategoryLista/>} />
                 <Route path="/productos" exact element={<ProductosLista/>} />
+                <Route path="/cart"  element={<Cart/>} />
             </Routes>
         </section>
     )

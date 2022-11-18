@@ -1,11 +1,11 @@
 import React from "react";
 
 export const OrdenItem =(
-    {order_id,
+    {   order_id,
         date,
         total_price,
         user_id,
-        OrdersDetalle   //Hace falta poner esto para el nuestro?
+        details
 })=>{
     return(
       <div className="ordenes">
@@ -36,12 +36,11 @@ export const OrdenItem =(
          </thead>
          <tbody>
          {
-           OrdersDetalle.map((ordenDetalle) =>(      //Hace falta poner esto para el nuestro?
+           details.map((ordenDetalle) =>(      
                 <tr>
-                <td>{ordenDetalle.nombre}</td>
-                <td>{ordenDetalle.precio_unitario}</td>
-                <td>{ordenDetalle.cantidad}</td>
-                <td>{ordenDetalle.total}</td>
+                <td>{ordenDetalle.price}</td>
+                <td>{ordenDetalle.quantity}</td>
+                <td>{ordenDetalle.total_price}</td>ss
               </tr>
                 ))
            }
