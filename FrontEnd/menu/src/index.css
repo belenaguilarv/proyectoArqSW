@@ -6,7 +6,6 @@
   text-decoration:none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin-top: 23px;
 }
 
 code {
@@ -196,7 +195,7 @@ h2{
   transition: all .35s;
   cursor: pointer;
   text-transform: uppercase;
-  padding-bottom: 23px;
+
 }
 .category:hover {
   color: #34356E;
@@ -247,6 +246,7 @@ h2{
   background-color: #34356E;
   padding: 15px;
 }
+/*no anda*/
 .todos h1:hover {
   font-size:larger;
   color: #ffff;
