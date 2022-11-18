@@ -6,8 +6,8 @@ import swal from "sweetalert2";
 
 const Cookie = new Cookies();
 
-async function GetOrdersByIdUser(id) {
-    return fetch('http://localhost:8090/orderUser/' +id, {
+async function GetOrdersWithDetailsByUserId(id) {
+    return fetch('http://localhost:8090/ordersWithDetails/' +id, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -30,7 +30,7 @@ export const GetOrders = ()=>{
     }
     const [ordenes,setOrdenes]=useState([]);
         async function Handle (id) {
-            const response = await GetOrdersByIdUser(id)
+            const response = await GetOrdersWithDetailsByUserId(id)
             if (response.status == 400) {
                 swal.fire({
                     text: "No ha realizado ninguna orden",

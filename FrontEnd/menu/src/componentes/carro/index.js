@@ -18,9 +18,8 @@ function serIdUsuario (){
 }
 
 function auxiliar(){
-
   CrearOrden();
-  }
+}
 
 async function GetProductById(id){
   return fetch("http://localhost:8090/product/" + id, {
@@ -35,7 +34,6 @@ async function getCartProducts(){
  
   let items = []
   let a = Cookie.get("cart"+idUsuario).split(";")
-
   for (let i = 0; i < a.length; i++){
     let item = a[i];
     if(item != ""){
@@ -108,7 +106,7 @@ function showProducts(products){
         <div className="producto_footer">
             <h1>{product.name}</h1>
             <p>{product.description}</p>
-            <p className="price">U$S {product.product_unit_price}</p>
+            <p className="price">$ {product.product_unit_price}</p>
             <h3 className="Remove"> Remover </h3>
        <select id={"removeSelect" + product.product_id}>
         {getOptions(product.quantity)}
@@ -116,7 +114,7 @@ function showProducts(products){
        <button className="remove" onClick={() => remove(document.getElementById("removeSelect" + product.product_id).value, product.product_id)}>x</button>
        <h1 className="amount"> Cantidad: </h1>
        <h1 className="number"> {product.quantity} </h1>
-       <h1 className="subtotal"> Subtotal: U$S {product.quantity * product.product_unit_price} </h1>
+       <h1 className="subtotal"> Subtotal: $ {product.quantity * product.product_unit_price} </h1>
         </div>
         </div>
         </div>

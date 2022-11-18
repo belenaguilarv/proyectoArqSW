@@ -7,8 +7,8 @@ export function addToCart(id){
   let token;
   if(cookieUser!=undefined){
   let array = cookieUser.split(",")
-   token=array[0]
-   id_user = array[1]
+   id_user = array[0]
+   token=array[1]
   }
   else{
        id_user = "undefined"
