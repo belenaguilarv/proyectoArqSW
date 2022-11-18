@@ -92,7 +92,7 @@ func (s *productService) GetProductsByPalabrasClaves(clave string) (dto.Products
 
 	}
 	if control == 0 {
-		return productsDto, e.NewNotFoundApiError("Error - There is not matching product")
+		return productsDto, e.NewBadRequestApiError("products not found")
 	}
 
 	return productsDto, nil
