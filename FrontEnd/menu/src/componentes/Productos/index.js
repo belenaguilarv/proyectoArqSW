@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState} from "react";
 import { ProductoItem } from "./ProductoItem";
 import { ProductosBuscador } from "./buscador";
+import { Link } from "react-router-dom";
 
 
 export const ProductosLista = () => {
@@ -18,9 +19,11 @@ export const ProductosLista = () => {
         <>
         <ProductosBuscador/>
 
-        <div className="cart">
-        <box-icon name="cart"></box-icon>
-        </div>
+        <ul>
+        <li>
+          <Link to="/cart" ><h1>MI CARRITO</h1></Link>
+        </li>
+        </ul>
         
         
         <h2>NUESTROS PRODUCTOS</h2>

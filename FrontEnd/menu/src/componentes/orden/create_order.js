@@ -71,7 +71,6 @@ export const CrearOrden = ()=>{
         body: JSON.stringify({
              user_id: id_user,
              details: ordersDetail
-             //details:details como antes
     })
     };
      
