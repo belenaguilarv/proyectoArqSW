@@ -25,7 +25,7 @@ export const CrearOrden = ()=>{
     let cookie = Cookie.get("username")
     let id_user = parseInt(cookie.split(",")[0]);
     let OrderDetail ={'product_id':0,'quantity':0}
-    let details = [];
+    let ordersDetail = [];
 
     let a = Cookie.get("cart"+id_user).split(";")
  
@@ -38,7 +38,7 @@ export const CrearOrden = ()=>{
          OrderDetail.product_id = parseInt(array[0])
          OrderDetail.quantity =parseInt(array[1])
          
-        details.push(OrderDetail)
+         ordersDetail.push(OrderDetail)
         
       }
     }
@@ -69,8 +69,9 @@ export const CrearOrden = ()=>{
         headers: {'Content-Type': 'application/json'},
         
         body: JSON.stringify({
-             id_user: id_user,
-             details: details
+             user_id: id_user,
+             details: ordersDetail
+             //details:details como antes
     })
     };
      

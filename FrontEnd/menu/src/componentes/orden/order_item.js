@@ -28,7 +28,6 @@ export const OrdenItem =(
        <table>
         <thead>
            <tr>
-             <th>Producto</th>
              <th>Precio Unitario</th>
              <th>Cantidad</th>
              <th>Total</th>
@@ -36,11 +35,11 @@ export const OrdenItem =(
          </thead>
          <tbody>
          {
-           details.map((ordenDetalle) =>(      
+           details.map((OrdenDetalle) =>(      
                 <tr>
-                <td>{ordenDetalle.price}</td>
-                <td>{ordenDetalle.quantity}</td>
-                <td>{ordenDetalle.total_price}</td>
+                <td>{OrdenDetalle.price}</td>
+                <td>{OrdenDetalle.quantity}</td>
+                <td>{OrdenDetalle.total_price}</td>
               </tr>
                 ))
            }
