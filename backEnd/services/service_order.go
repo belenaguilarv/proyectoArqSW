@@ -18,6 +18,7 @@ type orderServiceInterface interface {
 	GetOrderWithDetailsById(id int) (dto.OrderWithDetailsDto, e.ApiError)
 	DeleteOrder(id int) (dto.OrderWithDetailsDto, e.ApiError)
 	GetOrdersWithDetailsByUserId(order_id int) (dto.OrdersWithDetailsDto, e.ApiError)
+	GetOrdersByUserId(id int) (dto.OrdersDto, e.ApiError)
 }
 
 var (
@@ -284,4 +285,26 @@ func (s *orderService) GetOrdersWithDetailsByUserId(id int) (dto.OrdersWithDetai
 	}
 
 	return ordersWithDetailsDto, nil
+}
+
+func (s *orderService) GetOrdersByUserId(id int) (dto.OrdersDto, e.ApiError) {
+	var orders model.Orders = orderCliente.GetOrders()
+	var ordersDto dto.OrdersDto
+
+	for _, order := range orders {
+		var orderDto dto.OrderDto
+
+		if order.UserId == id {
+
+			orderDto.Id = order.Id
+			orderDto.Date = order.Date
+			orderDto.TotalPrice = order.TotalPrice
+			orderDto.UserId = order.UserId
+
+			ordersDto = append(ordersDto, orderDto)
+		}
+	}
+
+	return ordersDto, nil
+
 }

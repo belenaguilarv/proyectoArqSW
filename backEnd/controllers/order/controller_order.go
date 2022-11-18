@@ -107,7 +107,7 @@ func InsertOrder(c *gin.Context) {
 }
 
 func DeleteOrder(c *gin.Context) {
-	log.Debug("Order id to load: " + c.Param("id"))
+	log.Debug("Order id to delete: " + c.Param("id"))
 	id, _ := strconv.Atoi(c.Param("id"))
 
 	var orderwithdetailsDto dto.OrderWithDetailsDto
@@ -119,5 +119,19 @@ func DeleteOrder(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, orderwithdetailsDto)
+
+}
+
+func GetOrdersByUserId(c *gin.Context) {
+	log.Debug("UserId to Load: " + c.Param("id"))
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	ordersDto, err := service.OrderService.GetOrdersByUserId(id)
+
+	if err != nil {
+		c.JSON(err.Status(), err)
+		return
+	}
+	c.JSON(http.StatusOK, ordersDto)
 
 }
