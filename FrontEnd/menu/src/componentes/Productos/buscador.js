@@ -60,6 +60,7 @@ export const ProductosBuscador = ()=>{
         onClick = {handleSubmit}
         />
       </div>
+        <div className="vacio">
         <div className="productos">
             {
                 productos.map(producto =>(
@@ -74,6 +75,7 @@ export const ProductosBuscador = ()=>{
                   /> 
                 ))
             }
+        </div>
         </div>
         </>
     )

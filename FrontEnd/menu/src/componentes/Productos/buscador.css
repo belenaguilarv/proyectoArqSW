@@ -15,11 +15,12 @@
     padding: 10px 20px;
 }
 .containerInput{
-    position: absolute;
-    top: 2.5%;
-    left: 40%;
-    display: flex;
-}
+    width: 20%;
+    display:flex;
+    position:static ;
+    margin:1rem auto;
+    flex-direction:row;
+  }
 .title{
     text-align: center;
     color: #fff;
