@@ -13,8 +13,8 @@ export const OrdenItem =(
           <table>
          <thead>
            <tr>
-             <th>Total Price</th>
-             <th>Date</th>
+             <th>Monto Final</th>
+             <th>Fecha</th>
            </tr>
          </thead>
          <tbody>
@@ -40,7 +40,7 @@ export const OrdenItem =(
                 <tr>
                 <td>{ordenDetalle.price}</td>
                 <td>{ordenDetalle.quantity}</td>
-                <td>{ordenDetalle.total_price}</td>ss
+                <td>{ordenDetalle.total_price}</td>
               </tr>
                 ))
            }

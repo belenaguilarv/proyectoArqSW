@@ -8,7 +8,7 @@ function notLogin(){
     window.location.replace("/")
 }
 const Cookie = new Cookies();
-let cookie = Cookie.get("user")
+let cookie = Cookie.get("username")
     let id_user;
     if(cookie!=undefined){
     let array = cookie.split(",")
@@ -47,7 +47,7 @@ export const ProductoItem =(
         <div className="buttom">
         {stock>0?
             id_user!="undefined"?
-            <button className="btn" onClick={()=> addToCart(id)}>
+            <button className="btn" onClick={()=> addToCart(product_id)}>
                 Agregar
             </button>:
             <button className="btn" onClick={()=>notLogin()}>

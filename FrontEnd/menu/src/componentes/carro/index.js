@@ -14,9 +14,7 @@ function serIdUsuario (){
   return array[0]
   }else{
     return "undefined"
-  }
- 
-  
+  } 
 }
 
 function auxiliar(){
@@ -24,7 +22,7 @@ function auxiliar(){
   CrearOrden();
   }
 
-async function getProductById(id){
+async function GetProductById(id){
   return fetch("http://localhost:8090/product/" + id, {
     method: "GET",
     headers: {
@@ -32,9 +30,6 @@ async function getProductById(id){
     }
   }).then(response => response.json())
 }
-
-
-
 
 async function getCartProducts(){
  
@@ -47,7 +42,7 @@ async function getCartProducts(){
       let array = item.split(",")
       let id = array[0]
       let quantity = array[1]
-      let product = await getProductById(id)
+      let product = await GetProductById(id)
       product.quantity = quantity;
       items.push(product)
     }
@@ -152,7 +147,7 @@ function Cart(){
 
   const renderOrderButton = (
     <div className="emptySpace">
-      <span> Total a Pagar: U$S {total} </span>
+      <span> Total a Pagar: $ {total} </span>
     </div>
   )
 
