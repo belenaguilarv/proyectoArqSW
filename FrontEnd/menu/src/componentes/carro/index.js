@@ -159,7 +159,7 @@ function Cart(){
       {cartProducts.length>=1 ? 
       <div className="pago">
         {renderOrderButton}
-        <button className="payment"  onClick={()=> auxiliar()}> Payment</button>
+        <button className="payment"  onClick={()=> auxiliar()}> PAGAR</button>
       </div>:
       <div><h2>Tu Carrito esta vacio</h2></div>
 }
