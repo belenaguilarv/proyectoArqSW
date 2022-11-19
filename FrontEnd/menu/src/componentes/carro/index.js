@@ -144,13 +144,16 @@ function Cart(){
   
 
   const renderOrderButton = (
+    
     <div className="emptySpace">
       <span> Total a Pagar: $ {total} </span>
     </div>
   )
 
   return (
+    
     <div>
+
       <h1 className="title"> TU CARRITO</h1>
       <div className="productos">
         {Cookie.get("cart"+idUsuario) ? showProducts(cartProducts) : <a></a>}
