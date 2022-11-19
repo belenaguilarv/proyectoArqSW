@@ -19,12 +19,16 @@ function vaciarCarrito(){
    
     document.cookie = "cart"+id_user+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
+
+async function GetProductById(id){
+  return fetch("http://localhost:8090/product/" + id).then(response => response.json())
+}
 export const CrearOrden = ()=>{
   
 
     let cookie = Cookie.get("username")
     let id_user = parseInt(cookie.split(",")[0]);
-    let OrderDetail ={'product_id':0,'quantity':0}
+    let orderDetail ={'product_id':0,'quantity':0}
     let ordersDetail = [];
 
     let a = Cookie.get("cart"+id_user).split(";")
@@ -34,11 +38,11 @@ export const CrearOrden = ()=>{
       let item = a[i];
       if(item != ""){
         let array = item.split(",")
-        OrderDetail ={'product_id':0,'quantity':0}
-         OrderDetail.product_id = parseInt(array[0])
-         OrderDetail.quantity =parseInt(array[1])
+        orderDetail ={'product_id':0,'quantity':0}
+        orderDetail.product_id = parseInt(array[0])
+        orderDetail.quantity =parseInt(array[1])
          
-         ordersDetail.push(OrderDetail)
+        ordersDetail.push(orderDetail)
         
       }
     }
@@ -57,7 +61,7 @@ export const CrearOrden = ()=>{
           swal.fire({icon: 'success', text:"Compra realizada con éxito"}
           ).then((result) => {
             if (result.isConfirmed) {
-              window.location.replace("/")
+              window.location.replace("/inicio")
               vaciarCarrito()
               return response.json()
             }})

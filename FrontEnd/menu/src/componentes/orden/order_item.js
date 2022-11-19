@@ -35,11 +35,11 @@ export const OrdenItem =(
          </thead>
          <tbody>
          {
-           details.map((OrdenDetalle) =>(      
+           details.map((detail) =>(      
                 <tr>
-                <td>{OrdenDetalle.price}</td>
-                <td>{OrdenDetalle.quantity}</td>
-                <td>{OrdenDetalle.total_price}</td>
+                <td>{detail.price}</td>
+                <td>{detail.quantity}</td>
+                <td>{detail.total_price}</td>
               </tr>
                 ))
            }
