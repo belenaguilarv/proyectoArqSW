@@ -151,11 +151,11 @@ func (s *orderService) InsertOrder(orderwithdetailsDto dto.OrderWithDetailsDto) 
 	var order model.Order
 	var detailsssDto dto.OrderDetailsDto
 
-	order.Date = orderwithdetailsDto.Date
 	order.UserId = orderwithdetailsDto.UserId
 
 	order = orderCliente.InsertOrder(order)
 	orderwithdetailsDto.Id = order.Id
+	orderwithdetailsDto.Date = order.Date
 
 	for _, OrderDetailDto := range orderwithdetailsDto.Details {
 		var detail model.OrderDetail

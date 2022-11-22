@@ -1,6 +1,8 @@
 package order
 
 import (
+	"time"
+
 	"github.com/belenaguilarv/proyectoArqSW/backEnd/model"
 	log "github.com/sirupsen/logrus"
 	"gorm.io/gorm"
@@ -36,12 +38,18 @@ func UpdateMontoFinal(monto float32, id_Order int) {
 }
 
 func InsertOrder(order model.Order) model.Order {
+	var ahora time.Time
+	ahora = time.Now()
+	order.Date = ahora.Format(time.RFC1123)
+
 	result := Db.Create(&order)
 
 	if result.Error != nil {
 		log.Error("ERROR al crear la orden")
 	}
 	log.Debug("Order Created: ", order.Id)
+
+	println("\n\n DATE: " + order.Date + "\n\n")
 	return order
 }
 
