@@ -154,31 +154,31 @@ func (s *orderService) InsertOrder(orderwithdetailsDto dto.OrderWithDetailsDto) 
 	order.Date = orderwithdetailsDto.Date
 	order.UserId = orderwithdetailsDto.UserId
 
-	var TOTALPRICE float32
-
-	for _, OrderDetailDto := range orderwithdetailsDto.Details {
-		TOTALPRICE = TOTALPRICE + (float32(OrderDetailDto.Quantity) * OrderDetailDto.Price)
-	}
-
-	order.TotalPrice = TOTALPRICE
 	order = orderCliente.InsertOrder(order)
 	orderwithdetailsDto.Id = order.Id
-	orderwithdetailsDto.TotalPrice = TOTALPRICE
 
 	for _, OrderDetailDto := range orderwithdetailsDto.Details {
 		var detail model.OrderDetail
 
 		detail.OrderId = order.Id
 		OrderDetailDto.OrderId = order.Id
-		detail.Price = OrderDetailDto.Price
+		detail.Price = 0
 		detail.Quantity = OrderDetailDto.Quantity
-		detail.TotalPrice = OrderDetailDto.Price * float32(OrderDetailDto.Quantity)
+		detail.TotalPrice = 0
 		detail.ProductId = OrderDetailDto.ProductId
 
 		detail = orderCliente.InsertOrderDetail(detail)
 	}
 
 	var detailsss model.OrderDetails = orderDetailCliente.GetOrderDetails()
+	var Total_price float32
+
+	for _, detail := range detailsss {
+		Total_price = Total_price + detail.TotalPrice
+	}
+
+	orderCliente.UpdateMontoFinal(Total_price, orderwithdetailsDto.Id)
+	orderwithdetailsDto.TotalPrice = Total_price
 
 	for _, detail := range detailsss {
 

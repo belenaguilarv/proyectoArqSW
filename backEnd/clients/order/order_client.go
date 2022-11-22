@@ -25,14 +25,14 @@ func GetOrders() model.Orders {
 
 	return orders
 }
-func UpdateMontoFinal(monto float32, id_Order int) float32 {
-	result := Db.Model(&model.Order{}).Where("id = ?", id_Order).Update("monto_final", monto)
+func UpdateMontoFinal(monto float32, id_Order int) {
+	result := Db.Model(&model.Order{}).Where("id = ?", id_Order).Update("total_price", monto)
 
 	if result.Error != nil {
-
 		log.Error("Order no encontrada")
 	}
-	return monto
+
+	return
 }
 
 func InsertOrder(order model.Order) model.Order {
