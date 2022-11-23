@@ -96,8 +96,8 @@ function showProducts(products){
   return products.map((product) =>
 
    <div className="producto">
-   <div obj={product} key={product.product_id} >
-   <div>
+    <div obj={product} key={product.product_id} >
+     <div className="container">
         <a href="#">
         <div className="producto_img">
             <img className="image" src={product.picture_url} alt=""/>
@@ -112,12 +112,11 @@ function showProducts(products){
         {getOptions(product.quantity)}
        </select>
        <button className="remove" onClick={() => remove(document.getElementById("removeSelect" + product.product_id).value, product.product_id)}>x</button>
-       <h1 className="amount"> Cantidad: </h1>
-       <h1 className="number"> {product.quantity} </h1>
+       <h1 className="amount"> Cantidad: {product.quantity} </h1>
        <h1 className="subtotal"> Subtotal: $ {product.quantity * product.product_unit_price} </h1>
         </div>
-        </div>
-        </div>
+      </div>
+    </div>
    </div>
  )
 }

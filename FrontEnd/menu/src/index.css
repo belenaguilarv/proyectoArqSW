@@ -81,8 +81,13 @@ h2{
 .producto:hover{
   border: 6px solid #34356eaf;
 }
+/*       */
+.container{
+  display: flex;
+  flex-direction: row;
+}
 .producto_img img{
-  width: 300px;
+  width: 80%;
   height: 300px;
   object-fit: contain;
 }
@@ -258,7 +263,7 @@ h2{
   background-color: #0f1048;
   padding: 15px;
 }
-/*no anda*/
+
 .todos:hover {
   font-size:1.5rem;
   color: #ffff;
@@ -357,7 +362,7 @@ font-family: Arial, Helvetica, sans-serif;
 
 }
 .carrito_item .cantidad{
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 .carrito_item .remove_item box-icon{
