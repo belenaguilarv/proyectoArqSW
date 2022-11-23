@@ -17,7 +17,7 @@ export const ProductosLista = () => {
     },[])
     return(
         <>
-        <ProductosBuscador/>
+
         <div className="todos">
         <ul>
         <li>
@@ -25,6 +25,14 @@ export const ProductosLista = () => {
         </li>
         </ul>
         </div>
+        <div className="todos">
+        <ul>
+        <li>
+          <Link to="/order" ><h1>MIS COMPRAS</h1></Link>
+        </li>
+        </ul>
+        </div>
+        <ProductosBuscador/>
         
         
         <h2>NUESTROS PRODUCTOS</h2>

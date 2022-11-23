@@ -65,6 +65,13 @@ const Render =(
         </li>
         </ul>
         </div>
+        <div className="todos">
+        <ul>
+        <li>
+          <Link to="/order" ><h1>MIS COMPRAS</h1></Link>
+        </li>
+        </ul>
+        </div>
         <div className="categorias">
             {
                 categorias.map(categoria =>(

@@ -22,8 +22,8 @@ export const GetOrders = ()=>{
     let token;
     if(cookie!=undefined){
     let array = cookie.split(",")
-     id_user = array[0]
-     token=array[1]
+    token = array[0]
+     id_user=array[1]
     }
     else{
          id_user = "undefined"
