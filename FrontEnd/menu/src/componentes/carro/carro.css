@@ -31,22 +31,26 @@
       text-align: center;
       margin-left: -1rem;
     }
-    .remove{
-      color: rgb(255, 255, 255);
-      font-size: 1.8rem;
-      text-align: center;
-      margin: 1rem;
-      background-color: #67244D;
-      width: 2rem;
-      
-      justify-items: center;
-      border: transparent;
-    }
-    .remove:hover{
-      color: #67244D;
-      background-color: rgb(0, 0, 0);
-    }
-    
+.remove {
+  background: #92c7eb;
+  background-image: url(https://previews.123rf.com/images/konstantinks/konstantinks1403/konstantinks140300511/26874781-bot%C3%B3n-de-basura-en-el-fondo-blanco-.jpg);
+  background-size: cover;
+  background-position: center;
+  display: inline-block;
+  border: none;
+  padding: 11px;
+  width: 35px;
+  border-radius: 900px;
+  height: 35px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin-left: 6px;
+ }
+ .remove:hover
+ {
+  width: 45px;
+  height: 45px;
+ }
     .pago{
       font-size: 2rem;
       text-align: center;

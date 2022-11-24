@@ -64,8 +64,12 @@ export const GetOrders = ()=>{
         },[])
         return(
             <>
+            <div className="help">
             <h1 className="title">MIS COMPRAS</h1>
+            </div>
+
             <div>
+
                 <div className="ordenes">
             
             {

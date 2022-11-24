@@ -110,7 +110,7 @@ function showProducts(products){
        <select id={"removeSelect" + product.product_id}>
         {getOptions(product.quantity)}
        </select>
-       <button className="remove" onClick={() => remove(document.getElementById("removeSelect" + product.product_id).value, product.product_id)}>x</button>
+       <button className="remove" onClick={() => remove(document.getElementById("removeSelect" + product.product_id).value, product.product_id)}></button>
        <h1 className="amount"> Cantidad: {product.quantity} </h1>
        <h1 className="subtotal"> Subtotal: $ {product.quantity * product.product_unit_price} </h1>
         </div>
@@ -151,11 +151,13 @@ function Cart(){
   return (
     
     <div>
-
+      <div className="help"> 
       <h1 className="title"> TU CARRITO</h1>
+      </div>
       <div className="productos">
         {Cookie.get("cart"+idUsuario) ? showProducts(cartProducts) : <a></a>}
       </div>
+    
       
       {cartProducts.length>=1 ? 
       <div className="pago">
