@@ -107,7 +107,6 @@ function showProducts(products){
             <h1>{product.name}</h1>
             <p>{product.description}</p>
             <p className="price">$ {product.product_unit_price}</p>
-            <h3 className="Remove"> Remover </h3>
        <select id={"removeSelect" + product.product_id}>
         {getOptions(product.quantity)}
        </select>
