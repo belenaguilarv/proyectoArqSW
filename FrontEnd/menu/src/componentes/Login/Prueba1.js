@@ -40,7 +40,10 @@ export default function GetUserByLogin(){
             }})
         }
         if(response.status==201){
-          swal.fire({icon: 'success'}
+          swal.fire({
+            icon: 'success',
+            text: "¡BIENVENIDO!"
+          }
           ).then((result) => {
             if (result.isConfirmed) {
               window.location.replace("/inicio")

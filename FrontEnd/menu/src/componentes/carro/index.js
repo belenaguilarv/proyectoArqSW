@@ -152,7 +152,7 @@ function Cart(){
     
     <div>
       <div className="help"> 
-      <h1 className="title"> TU CARRITO</h1>
+      <h1 className="title1"> TU CARRITO</h1>
       </div>
       <div className="productos">
         {Cookie.get("cart"+idUsuario) ? showProducts(cartProducts) : <a></a>}
