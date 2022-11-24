@@ -275,6 +275,10 @@ h2{
   font-weight: bolder;
 }
 
+.todos:active{
+  color: #fff;
+}
+
 /*---CARRITO---*/
 .carritos{
   position: fixed;
